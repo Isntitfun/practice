@@ -1,0 +1,29 @@
+nav {
+  background-color: gainsboro;
+}
+.nav-center {
+  margin: 0px 10vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.nav-center ul {
+  list-style: none;
+}
+
+.nav-center li {
+  float: left;
+  margin-right: 30px;
+}
+.nav-center a {
+  color: black;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
