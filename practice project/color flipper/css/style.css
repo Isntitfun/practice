@@ -1,12 +1,48 @@
-nav {
-  background-color: gainsboro;
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap");
+
+html {
+  height: 100vh;
 }
-.nav-center {
-  margin: 0px 10vw;
+
+body {
+  background-color: #f1f5f8;
+  font-family: "Inconsolata", monospace;
+}
+
+/* 
+============
+Nav 
+============
+*/
+
+#hex-link {
+  color: darkolivegreen;
+}
+
+#simple-link {
+  color: darkolivegreen;
+}
+nav {
+  background-color: white;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.15);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
+}
+
+.nav-center {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 620px;
+}
+
+.nav-center h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: darkolivegreen;
 }
 
 .nav-center ul {
@@ -15,15 +51,63 @@ nav {
 
 .nav-center li {
   float: left;
+  font-size: 1.1rem;
   margin-right: 30px;
 }
 .nav-center a {
   color: black;
   text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease-out;
+}
+
+.nav-center a:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* 
+=========
+Container
+=========
+ */
+
+main {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 70px);
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+}
+
+.container h2 {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  border-radius: 7px;
+  font-size: 25px;
+  margin-bottom: 20px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.color {
+  color: darkolivegreen;
+}
+
+.container .btn {
+  background-color: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0.75px solid rgba(0, 0, 0, 0.85);
+  border-radius: 5px;
+  padding: 10px 19px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+.container .btn:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
 }
