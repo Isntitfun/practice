@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap");
+@import url(reset.css);
+@import url(contacts.css);
+@import url(nav.css);
+
+html {
+  background-image: url(https://images.hdqwalls.com/wallpapers/city-futuristic-retro-8k-uz.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: "Dosis", sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1200px) {
+  .contact-info-container {
+    max-width: 960px;
+  }
+  .nav-container {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 660px) and (max-width: 960px) {
+  .contact-info-container {
+    max-width: 700px;
+  }
+  .nav-container {
+    max-width: 700px;
+    flex-direction: column;
+  }
+
+  .nav-contents {
+    margin-left: 0;
+    margin-top: 10px;
+    display: grid;
+    width: 100%;
+    justify-content: stretch;
+    align-self: flex-start;
+  }
+  .nav-contents li {
+    float: none;
+    margin: 10px 0px;
+  }
+  .nav-toggle {
+    display: contents;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .contact-info-container {
+    max-width: 350px;
+  }
+
+  .nav-container {
+    max-width: 350px;
+    flex-direction: column;
+  }
+
+  .nav-contents {
+    margin-top: 10px;
+    margin-left: 0;
+    display: grid;
+    width: 100%;
+    justify-content: stretch;
+    align-self: flex-start;
+  }
+  .nav-contents li {
+    float: none;
+    margin: 10px 0px;
+  }
+
+  .contact-info a {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: contents;
+  }
+}
