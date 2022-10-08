@@ -12,8 +12,11 @@ html {
   font-family: "Dosis", sans-serif;
 }
 
-.hidden {
-  display: none;
+.nav-show {
+  height: auto;
+}
+.toggle-active {
+  background-color: transparent;
 }
 
 @media screen and (min-width: 960px) and (max-width: 1200px) {
@@ -41,13 +44,25 @@ html {
     width: 100%;
     justify-content: stretch;
     align-self: flex-start;
+    height: 0;
+    overflow: hidden;
   }
   .nav-contents li {
     float: none;
-    margin: 10px 0px;
+    padding: 10px 5px;
   }
   .nav-toggle {
     display: contents;
+  }
+  .nav-contents li:hover {
+    transform: translateY(0px);
+  }
+
+  .nav-show {
+    height: 280px;
+  }
+  .toggle-active {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -68,10 +83,12 @@ html {
     width: 100%;
     justify-content: stretch;
     align-self: flex-start;
+    height: 0;
+    overflow: hidden;
   }
   .nav-contents li {
     float: none;
-    margin: 10px 0px;
+    padding: 10px 5px;
   }
 
   .contact-info a {
@@ -80,5 +97,17 @@ html {
 
   .nav-toggle {
     display: contents;
+  }
+
+  .nav-contents li:hover {
+    transform: translateY(0px);
+  }
+
+  .nav-show {
+    height: 280px;
+  }
+
+  .toggle-active {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
