@@ -2,6 +2,7 @@
 @import url(reset.css);
 @import url(contacts.css);
 @import url(nav.css);
+@import url(gallery.css);
 
 html {
   background-image: url(https://images.hdqwalls.com/wallpapers/city-futuristic-retro-8k-uz.jpg);
@@ -10,6 +11,22 @@ html {
   background-position: center;
   background-attachment: fixed;
   font-family: "Dosis", sans-serif;
+}
+
+main {
+  position: fixed;
+  left: 0;
+  top: 132px;
+  width: 100vw;
+  height: calc(100vh - 132px);
+}
+
+aside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
 }
 
 .nav-show {

@@ -86,6 +86,5 @@ nav {
 }
 
 .nav-toggle:hover i {
-  transform: scale(1.1);
-  color: black;
+  transform: rotate(180deg);
 }
