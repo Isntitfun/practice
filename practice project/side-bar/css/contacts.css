@@ -1,0 +1,42 @@
+.contacts {
+  padding: 18px 5px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.4s ease-in-out;
+}
+
+.contact-info-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 40px;
+  transition: all 0.4s ease-in-out;
+}
+
+.general-contact {
+  display: flex;
+}
+
+.contact-info {
+  margin-right: 30px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.contact-info a {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.social-contact a {
+  color: white;
+  font-size: 0.9rem;
+
+  text-decoration: none;
+  margin-left: 10px;
+  cursor: pointer;
+}

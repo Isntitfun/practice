@@ -3,6 +3,7 @@
 @import url(contacts.css);
 @import url(nav.css);
 @import url(gallery.css);
+@import url(side.css);
 
 html {
   background-image: url(https://images.hdqwalls.com/wallpapers/city-futuristic-retro-8k-uz.jpg);
@@ -13,11 +14,17 @@ html {
   font-family: "Dosis", sans-serif;
 }
 
-.nav-show {
-  height: auto;
+header {
+  width: 100vw;
+  transition: all 0.1s ease-out;
 }
+
+.side-show {
+  transform: translateX(0);
+}
+
 .toggle-active {
-  background-color: transparent;
+  width: calc(100vw - 200px);
 }
 
 @media screen and (min-width: 960px) and (max-width: 1200px) {
@@ -29,7 +36,7 @@ html {
   }
 }
 
-@media screen and (min-width: 660px) and (max-width: 960px) {
+@media screen and (min-width: 700px) and (max-width: 960px) {
   .contact-info-container {
     max-width: 700px;
   }
@@ -38,36 +45,15 @@ html {
     flex-direction: column;
   }
 
-  .nav-contents {
-    margin-left: 0;
-    margin-top: 10px;
-    display: grid;
-    width: 100%;
-    justify-content: stretch;
-    align-self: flex-start;
-    height: 0;
-    overflow: hidden;
-  }
-  .nav-contents li {
-    float: none;
-    padding: 10px 5px;
-  }
   .nav-toggle {
     display: contents;
   }
   .nav-contents li:hover {
     transform: translateY(0px);
   }
-
-  .nav-show {
-    height: 280px;
-  }
-  .toggle-active {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 700px) {
   .contact-info-container {
     max-width: 350px;
   }
@@ -77,19 +63,10 @@ html {
     flex-direction: column;
   }
 
-  .nav-contents {
-    margin-top: 10px;
-    margin-left: 0;
-    display: grid;
-    width: 100%;
-    justify-content: stretch;
-    align-self: flex-start;
-    height: 0;
-    overflow: hidden;
-  }
-  .nav-contents li {
-    float: none;
-    padding: 10px 5px;
+  aside {
+    width: 100vw;
+    height: 100vh;
+    transform: translateX(100vw);
   }
 
   .contact-info a {
@@ -104,11 +81,8 @@ html {
     transform: translateY(0px);
   }
 
-  .nav-show {
-    height: 280px;
-  }
-
   .toggle-active {
-    background-color: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    opacity: 0;
   }
 }
