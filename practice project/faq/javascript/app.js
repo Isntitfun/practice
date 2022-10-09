@@ -43,14 +43,6 @@ function randomLengthGen() {
   return randomLengthNumber;
 }
 
-function handleUpperBtnClick(event) {
-  const target = event.currentTarget;
-  const targetColor = target.querySelector(".color");
-  targetColor.style.height = randomLengthGen();
-  targetColor.style.backgroundColor = randomColorGen();
-  console.dir(targetColor.style.backgroundColor);
-}
-
 function lowerBtnActive(targetColor) {
   const randomLengthTemp = randomLengthGen();
   const randomColor = randomColorGenC();
@@ -76,13 +68,23 @@ function selectColumn() {
   const upDown = [upperBtn, lowerBtn];
   let randomLineNumber = Math.floor(Math.random() * 2);
   const randomLine = upDown[randomLineNumber];
-  const target = randomLine[Math.floor(Math.random() * randomLine.length)];
+  const randomTargetNumber = Math.floor(Math.random() * randomLine.length);
+  const target = randomLine[randomTargetNumber];
   const targetColor = target.querySelector(".color");
+
   if (randomLineNumber === 0) {
     upperBtnActive(targetColor);
+    lowerBtn[randomTargetNumber].querySelector(".color").style.height = "0";
   } else {
     lowerBtnActive(targetColor);
+    upperBtn[randomTargetNumber].querySelector(".color").style.height = "0";
   }
+
+  target.style.backgroundColor = "rgba(233, 215, 156, 0.5)";
+
+  setTimeout(function () {
+    target.style.backgroundColor = "rgb(101, 139, 131, 0.5)";
+  }, 100);
 }
 
 function handleContainerMouseover() {

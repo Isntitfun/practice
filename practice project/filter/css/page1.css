@@ -1,0 +1,80 @@
+.page1 {
+  background-color: #e2e2e2;
+}
+
+.header {
+  height: 100%;
+  display: grid;
+  align-content: space-between;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.header-top a {
+  text-decoration: none;
+}
+.header-top .button-label {
+  width: 65px;
+  height: 65px;
+  border-radius: 32.5px;
+  background-color: black;
+  color: #e2e2e2;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.header-headline {
+  width: 80%;
+  max-width: 500px;
+}
+
+.header-headline h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.header-intro {
+  margin: 15px 0px;
+  width: 50%;
+  max-width: 300px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.header-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-footer a {
+  color: black;
+  margin-right: 10px;
+  margin-top: 45px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.header-footer a:last-child {
+  padding: 5px 10px;
+  background-color: black;
+  border-radius: 12px;
+  color: #e2e2e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-left: 20px;
+}
