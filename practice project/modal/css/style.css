@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+@import url(reset.css);
+@import url(header.css);
+@import url(modal.css);
+
+html {
+  font-family: "Noto Sans Mono", monospace;
+}
+
+.initial-img {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://img.freepik.com/premium-photo/black-white-skyline-panorama-downtown-financial-district-lower-manhattan-new-york_130111-5559.jpg?w=2000);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body {
+  height: 200vh;
+}

@@ -1,0 +1,41 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-container {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 40px;
+  padding-top: 70px;
+  box-sizing: border-box;
+}
+
+.header-container h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.menu,
+.info {
+  display: grid;
+  font-size: 0.85rem;
+  row-gap: 10px;
+  font-weight: 600;
+}
+
+.menu li {
+  cursor: pointer;
+}
+
+.menu li:hover {
+  font-family: "Orbitron", sans-serif;
+}
