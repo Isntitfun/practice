@@ -1,6 +1,7 @@
 .page2 {
   background-color: #ffbf00;
-  z-index: 10;
+  backdrop-filter: blur(15px);
+  z-index: -1;
 }
 
 .data-container {
@@ -19,29 +20,44 @@
 
 .data-main {
   display: grid;
+  gap: 7px;
 }
 
 .data-main article {
   display: grid;
   grid-template-columns: 150px 1fr 50px;
   align-items: flex-end;
-  padding: 10px 5px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: #ffcb3c;
+  transition: background-color 0.3s ease-out;
+}
+
+.data-main article:hover {
+  background-color: #ffdb79;
+}
+
+.data-main article:hover div {
+  color: black;
 }
 
 .data-title {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin-right: 30px;
   text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .data-update {
   font-size: 1rem;
   justify-self: flex-end;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .data-catch {
   padding: 0px 10px;
   font-size: 1rem;
   text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.9);
 }
