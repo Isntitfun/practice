@@ -1,5 +1,9 @@
 .page1 {
   background-color: #e2e2e2;
+  position: sticky;
+  top: 15px;
+  left: 15px;
+  z-index: -1;
 }
 
 .header {
@@ -20,11 +24,17 @@
 }
 
 .header-top a {
-  text-decoration: none;
-}
-.header-top .button-label {
   width: 65px;
   height: 65px;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-top .button-label {
+  width: 100%;
+  height: 100%;
   border-radius: 32.5px;
   background-color: black;
   color: #e2e2e2;
@@ -34,6 +44,14 @@
   align-items: center;
   font-size: 0.85rem;
   font-weight: 500;
+  position: absolute;
+  z-index: -1;
+
+  transition: transform 1s cubic-bezier(0, 0.9, 1, -1);
+}
+
+.header-top .button-label:hover {
+  transform: scale(1.3);
 }
 
 .header-headline {
@@ -78,4 +96,11 @@
   align-items: center;
   font-size: 0.8rem;
   margin-left: 20px;
+  will-change: scale;
+  z-index: -1;
+  transition: transform 0.3s ease-out;
+}
+
+.header-footer a:last-child:hover {
+  transform: scale(1.1);
 }
