@@ -1,0 +1,47 @@
+.page2 {
+  background-color: #ffbf00;
+  z-index: 10;
+}
+
+.data-container {
+  height: 100%;
+  display: grid;
+  align-content: flex-start;
+}
+
+.data-header {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.data-main {
+  display: grid;
+}
+
+.data-main article {
+  display: grid;
+  grid-template-columns: 150px 1fr 50px;
+  align-items: flex-end;
+  padding: 10px 5px;
+}
+
+.data-title {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-right: 30px;
+  text-transform: uppercase;
+}
+
+.data-update {
+  font-size: 1rem;
+  justify-self: flex-end;
+}
+
+.data-catch {
+  padding: 0px 10px;
+  font-size: 1rem;
+  text-transform: capitalize;
+}

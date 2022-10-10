@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
 @import url(reset.css);
 @import url(page1.css);
+@import url(page2.css);
 
 html {
   font-family: "Oswald", sans-serif;
@@ -15,11 +16,6 @@ body {
   padding: 50px;
   height: calc(100vh - 30px);
   box-sizing: border-box;
-}
-
-.page2 {
-  background-color: #ffbf00;
-  z-index: 10;
 }
 
 .blur-box {
