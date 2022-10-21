@@ -3,41 +3,41 @@ const data = [
     id: 1,
     title: "html",
     catch: "language used to structure the webpage elements",
-    category: "web",
+    category: "language",
   },
   {
     id: 2,
     title: "css",
     catch:
       "language used to create the layout the webpage and style the web page elements",
-    category: "web",
+    category: "language",
   },
   {
     id: 3,
     title: "javascript",
     catch: "language used to make the webpage interactive and dynamic",
-    category: "web",
+    category: "language",
   },
   {
     id: 4,
     title: "python",
     catch:
       " high-level, general-purpose programming language that emphasizes code readability",
-    category: "general-purpose language",
+    category: "language",
   },
   {
     id: 5,
     title: "swift",
     catch:
       "general-purpose, multi-paradigm, compiled programming language primarily used to develop IOS app",
-    category: "general-purpose language",
+    category: "language",
   },
   {
     id: 6,
     title: "kotlin",
     catch:
       "cross-platform, statically typed, general-purpose programming language preferred for Android app developers",
-    category: "general-purpose language",
+    category: "language",
   },
   {
     id: 7,
@@ -69,10 +69,17 @@ const data = [
   },
 ];
 
-const dataMain = document.querySelector(".data-main");
 
-function showData() {
-  let dataString = data.map(function (item) {
+// Constants =============================================================
+
+const dataMain = document.querySelector(".data-main");
+const filterBtn = document.querySelectorAll(".filter-btn button")
+
+// Constants ends ========================================================
+// Functions =============================================================
+
+const showData = (array) => {
+  let dataString = array.map(function (item) {
     return `<article>
      <div class="data-title">
     <h1>${item.title}</h1>
@@ -85,11 +92,41 @@ function showData() {
     </div>
     </article>`;
   });
-  console.log(dataString);
   dataString = dataString.join("");
-  console.log(dataString);
-
   dataMain.innerHTML = dataString;
+
 }
 
-window.addEventListener("DOMContentLoaded", showData);
+// Functions ends ========================================================
+// Event handlers ========================================================
+
+function showDataInit() {
+  showData(data)
+}
+
+function handleFilterBtnClick(event) {
+  const selectedCategory = event.currentTarget.dataset.id
+  const CategorizedArray = data.filter((item) => {
+    if(item.category === selectedCategory) {
+      return item
+    }
+  })
+  if(selectedCategory === "all") {
+    showData(data)
+  } else {
+    showData(CategorizedArray)
+  }
+}
+
+// Event handlers ends ===================================================
+// Eventlisteners ========================================================
+
+window.addEventListener("DOMContentLoaded", showDataInit);
+filterBtn.forEach((item) => {
+  item.addEventListener("click", handleFilterBtnClick)
+})
+
+
+// Eventlisteners ends ===================================================
+
+

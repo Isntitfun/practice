@@ -15,7 +15,42 @@
   justify-content: center;
   font-size: 3rem;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px 6px;
+  margin-bottom: 15px;
+  background-color: rgba(0, 0, 0, 0.541);
+  gap: 6px;
+  border-radius: 3px;
+}
+
+.filter-btn button{
+  font-family: "Oswald", sans-serif;
+  text-transform: capitalize;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; 
+  background-color: rgb(32, 32, 32);
+  color: white; 
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 4px;
+  transition: all 0.18s ease-in;
+}
+
+.filter-btn button:hover {
+  background-color:#ffbf00;
+  color: black;
 }
 
 .data-main {
@@ -42,7 +77,7 @@
 }
 
 .data-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 500;
   margin-right: 30px;
   text-transform: uppercase;
