@@ -29,14 +29,15 @@
   border-radius: 3px;
 }
 
-.filter-btn button{
+.filter-btn button {
   font-family: "Oswald", sans-serif;
   text-transform: capitalize;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none; 
+  appearance: none;
+  outline: none;
   background-color: rgb(32, 32, 32);
-  color: white; 
+  color: white;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -49,8 +50,9 @@
 }
 
 .filter-btn button:hover {
-  background-color:#ffbf00;
+  background-color: white;
   color: black;
+  border-radius: 10px;
 }
 
 .data-main {

@@ -3,20 +3,20 @@ const data = [
     id: 1,
     title: "html",
     catch: "language used to structure the webpage elements",
-    category: "language",
+    category: "web",
   },
   {
     id: 2,
     title: "css",
     catch:
       "language used to create the layout the webpage and style the web page elements",
-    category: "language",
+    category: "web",
   },
   {
     id: 3,
     title: "javascript",
     catch: "language used to make the webpage interactive and dynamic",
-    category: "language",
+    category: "web",
   },
   {
     id: 4,
@@ -72,27 +72,53 @@ const data = [
 // Constants =============================================================
 
 const dataMain = document.querySelector(".data-main");
-const filterBtn = document.querySelectorAll(".filter-btn button");
+const filterBtnContainer = document.querySelector(".filter-btn");
+
+let filterBtn = document.querySelectorAll(".filter-btn button");
 
 // Constants ends ========================================================
 // Functions =============================================================
 
 const showData = (array) => {
   let dataString = array.map((item) => {
-    return `          <article>
-    <div class="data-title">
-      <h1>${item.title}</h1>
-    </div>
-    <div class="data-catch">
-      <span>${item.catch}</span>
-    </div>
-    <div class="data-update">
-      <i class="fa-solid fa-wrench"></i>
-    </div>
-  </article>`;
+    return `          
+    <article>
+      <div class="data-title">
+        <h1>${item.title}</h1>
+      </div>
+      <div class="data-catch">
+        <span>${item.catch}</span>
+      </div>
+      <div class="data-update">
+        <i class="fa-solid fa-wrench"></i>
+      </div>
+    </article>`;
   });
   dataString = dataString.join("");
   dataMain.innerHTML = dataString;
+  console.log(dataMain.innerHTML);
+};
+
+const showFilterBtn = (array) => {
+  const categories = array.reduce(
+    (value, item) => {
+      if (!value.includes(item.category)) {
+        value.push(item.category);
+      }
+      return value;
+    },
+    ["all"]
+  );
+  const filterBtnHtml = categories
+    .map((item) => {
+      return `<button data-id="${item}">${item}</button>`;
+    })
+    .join("");
+  filterBtnContainer.innerHTML = filterBtnHtml;
+  filterBtn = document.querySelectorAll(".filter-btn button");
+  filterBtn.forEach((item) => {
+    item.addEventListener("click", handleFilterBtnClick);
+  });
 };
 
 // Functions ends ========================================================
@@ -100,6 +126,7 @@ const showData = (array) => {
 
 const handleWindowLoaded = () => {
   showData(data);
+  showFilterBtn(data);
 };
 
 const handleFilterBtnClick = (event) => {
