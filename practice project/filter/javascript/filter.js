@@ -69,64 +69,61 @@ const data = [
   },
 ];
 
-
 // Constants =============================================================
 
 const dataMain = document.querySelector(".data-main");
-const filterBtn = document.querySelectorAll(".filter-btn button")
+const filterBtn = document.querySelectorAll(".filter-btn button");
 
 // Constants ends ========================================================
 // Functions =============================================================
 
 const showData = (array) => {
-  let dataString = array.map(function (item) {
-    return `<article>
-     <div class="data-title">
-    <h1>${item.title}</h1>
+  let dataString = array.map((item) => {
+    return `          <article>
+    <div class="data-title">
+      <h1>${item.title}</h1>
     </div>
     <div class="data-catch">
-    <span>${item.catch}</span>
+      <span>${item.catch}</span>
     </div>
     <div class="data-update">
-    <i class="fa-solid fa-wrench"></i>
+      <i class="fa-solid fa-wrench"></i>
     </div>
-    </article>`;
+  </article>`;
   });
   dataString = dataString.join("");
   dataMain.innerHTML = dataString;
-
-}
+};
 
 // Functions ends ========================================================
 // Event handlers ========================================================
 
-function showDataInit() {
-  showData(data)
-}
+const handleWindowLoaded = () => {
+  showData(data);
+};
 
-function handleFilterBtnClick(event) {
-  const selectedCategory = event.currentTarget.dataset.id
+const handleFilterBtnClick = (event) => {
+  const selectedCategory = event.currentTarget.dataset.id;
   const CategorizedArray = data.filter((item) => {
-    if(item.category === selectedCategory) {
-      return item
+    if (item.category === selectedCategory) {
+      return item;
     }
-  })
-  if(selectedCategory === "all") {
-    showData(data)
+  });
+
+  if (selectedCategory === "all") {
+    showData(data);
   } else {
-    showData(CategorizedArray)
+    showData(CategorizedArray);
   }
-}
+};
 
 // Event handlers ends ===================================================
 // Eventlisteners ========================================================
 
-window.addEventListener("DOMContentLoaded", showDataInit);
-filterBtn.forEach((item) => {
-  item.addEventListener("click", handleFilterBtnClick)
-})
+window.addEventListener("DOMContentLoaded", handleWindowLoaded);
 
+filterBtn.forEach((item) => {
+  item.addEventListener("click", handleFilterBtnClick);
+});
 
 // Eventlisteners ends ===================================================
-
-
