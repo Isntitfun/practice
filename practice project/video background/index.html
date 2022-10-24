@@ -8,10 +8,31 @@
     <title>Video Background</title>
   </head>
   <body>
-    <header>
-      <video class="video-container" autoplay loop muted>
-        <source src="video/videoplayback.mp4" />
+    <div class="video-container">
+      <video class="video" autoplay loop muted>
+        <source src="video/icleand.mp4" />
       </video>
-    </header>
+    </div>
+
+    <div class="content-container">
+      <div class="header"></div>
+      <div class="switch-container">
+        <div class="switch-box">
+          <input type="checkbox" class="switch" id="switch">
+          <label class="label" for="switch" >
+            <span>playing</span>
+            <span>paused</span>
+            <span class="slider">
+              <i class="fa-solid fa-play"></i>
+              <i class="fa-solid fa-pause"></i>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
   </body>
+  <script
+  src="https://kit.fontawesome.com/a9d4c305f4.js"
+  crossorigin="anonymous"
+></script>
 </html>
