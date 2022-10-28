@@ -1,0 +1,24 @@
+.banner {
+  padding: 0px 20vw;
+}
+
+.banner-container {
+  display: grid;
+  justify-content: center;
+  gap: 20px;
+}
+
+.banner-title {
+  display: flex;
+  justify-content: center;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+}
+
+.banner-btn {
+  display: flex;
+  justify-content: center;
+}
