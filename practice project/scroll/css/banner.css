@@ -1,29 +1,48 @@
 .banner {
   padding: 0px 20vw;
+  color: white;
 }
 
 .banner-container {
-  height: 90vh;
+  height: calc(100vh - 70px);
   display: grid;
   justify-content: center;
   align-content: center;
   gap: 20px;
+
 }
 
 .banner-title {
   display: flex;
   justify-content: center;
+  text-transform: uppercase;
+
   font-size: 1.9rem;
   font-weight: 600;
 }
 
 .description {
+  font-weight: 200;
   margin-top: 0;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .banner-btn {
   display: flex;
   justify-content: center;
+  text-transform: uppercase;
+
+}
+
+.banner-btn a {
+  text-decoration: none;
+  color: white;
+  font-weight: 300;
+  padding: 7px;
+  border: 0.5px solid white;
+  border-radius: 3px;
+  margin-top: 15px;
+
 }

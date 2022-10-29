@@ -1,4 +1,30 @@
 .section-container {
-    display: flex;
-    justify-content: center;
+    margin-top: 10px;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+height: 100vh;
+}
+.title {
+    margin-top: 50px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: white;
+
+}
+
+#about {
+    background: no-repeat center / cover url("../img/waikiki-beach.jpg") rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+}
+
+#services {
+    background: no-repeat center / cover url("../img/dfcb60e0eafa064005d74a315bac5905.jpg") rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+}
+
+#tours {
+    background: no-repeat center / cover url("../img/paddleboarding_Hawaii.jpg") rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
 }
