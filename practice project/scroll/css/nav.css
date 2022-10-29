@@ -1,7 +1,8 @@
 .nav {
+  width: 100vw;
+  position: fixed;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .nav-container {
@@ -9,8 +10,13 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  box-sizing: border-box;
+  box-sizing: border-box ;
+  justify-self: center;
+}
+
+.fixed-nav {
+  background: linear-gradient(rgb(0, 0, 0,0.4),rgba(0,0,0,0));
+  z-index: 2;
 }
 
 .nav-header {
@@ -55,7 +61,14 @@
   text-decoration: none;
   font-size: 1.15rem;
   text-transform: capitalize;
+  will-change: transform;
+  transition: 0.2s;
 }
+
+.menu a:hover {
+  transform: scale(1.08);
+}
+
 
 .nav-toggle button {
   appearance: none;
@@ -77,6 +90,7 @@
     flex-direction: row;
     justify-content: space-between;
     max-width: 1400px;
+    background: none !important;
   }
 
   .menu {
@@ -91,7 +105,7 @@
   }
 
   .menu-container {
-    height: auto;
+    height: auto !important;
   }
   
 }
