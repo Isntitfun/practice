@@ -46,8 +46,6 @@ const navHeight = navContainer.getBoundingClientRect().height
 const scrollHeight = window.scrollY
 const bannerHeight = banner.getBoundingClientRect().height
 const topLink = document.querySelector(".top-link")
-console.log(navHeight)
-console.log(scrollHeight)
 if(scrollHeight > navHeight) {
     navSection.classList.add("fixed-nav")
 } else if(scrollHeight <= navHeight) {
@@ -63,3 +61,17 @@ if(scrollHeight > bannerHeight) {
 
 window.addEventListener("scroll", handleWindowScroll)
 // fixed nav-bar end ============================================
+// smooth scroll ================================================
+const menuItem = document.querySelectorAll(".menu a")
+
+menuItem.forEach(item => {
+    item.addEventListener("click", (e) => {
+        const targetId = e.currentTarget.getAttribute("href").slice(1)
+        const target = document.getElementById(`${targetId}`)
+        let position = target.offsetTop
+        window.scrollTo(0,position)
+        handleSectionClick()
+    })
+})
+
+// smooth scroll end ============================================

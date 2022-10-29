@@ -20,6 +20,27 @@ footer {
     text-decoration: none;
     transition: 0.8s;
 }
+
+@keyframes topLinkAnime {
+    0%{
+        transform: translateY(0px);
+    }
+    25%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    75% {
+        transform: translateY(-7px);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+.top-link:hover{
+    animation: topLinkAnime 0.9s 0.3s ease-in-out forwards;
+}
 .show-link {
 opacity: 1;
 }
