@@ -6,8 +6,9 @@ footer {
     justify-content: flex-end;
     align-items: center;
     font-weight: 100;    
-    background-color: rgb(99, 99, 99,0.3);
+    background-color: rgb(99, 99, 99,0.5);
     color: white;
+    font-size: 0.7rem;
 }
 .top-link {
     display: none;

@@ -4,19 +4,19 @@
 }
 
 .banner-container {
-  height: calc(100vh - 70px);
+  position: relative ;
+  height: calc(100vh);
   display: grid;
   justify-content: center;
   align-content: center;
   gap: 20px;
-
+  transition: 0.3s;
 }
 
 .banner-title {
   display: flex;
   justify-content: center;
   text-transform: uppercase;
-
   font-size: 1.9rem;
   font-weight: 600;
 }

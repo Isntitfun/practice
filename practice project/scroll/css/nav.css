@@ -1,11 +1,16 @@
 .nav {
-  padding: 20px;
-  height: 30px;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .nav-container {
+  width: 100vw;
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  box-sizing: border-box;
 }
 
 .nav-header {
@@ -26,13 +31,31 @@
 }
 
 .menu-container {
-  display: none;
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-/* .menu {
+
+.menu {
+  padding-top: 30px;
+  display: grid;
+  gap: 5px;
 }
+
 .menu li {
-} */
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
+  padding-left: 38px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.15rem;
+  text-transform: capitalize;
+}
 
 .nav-toggle button {
   appearance: none;
@@ -41,4 +64,34 @@
   background: none;
   font-size: 1.5rem;
   color: white;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 800px){
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1400px;
+  }
+
+  .menu {
+    display: flex;
+    padding-top: 0px;
+
+  }
+
+  .menu li {
+    align-items: flex-end;
+
+  }
+
+  .menu-container {
+    height: auto;
+  }
+  
 }
