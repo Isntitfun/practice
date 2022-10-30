@@ -1,57 +1,57 @@
-// Constants =============================================================
-
-const dataMain = document.querySelector(".data-main");
-const filterBtn = document.querySelectorAll(".filter-btn button");
-
-// Constants ends ========================================================
-// Functions =============================================================
-
-const showData = (array) => {
-  let dataString = array.map(function (item) {
-    return `<article>
-     <div class="data-title">
-    <h1>${item.title}</h1>
+<body>
+<section class="section-center">
+  <!-- image -->
+  <article class="gift-img">
+    <img src="./gift.jpeg" alt="gift" />
+  </article>
+  <!-- info -->
+  <article class="gift-info">
+    <h3>old iphone giveaway</h3>
+    <h4 class="giveaway">
+      giveaway ends on Sunday, 24 April 2020, 8:00am
+    </h4>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      Reprehenderit molestiae cum libero atque ut voluptate qui consectetur
+      aliquid incidunt voluptatem quos, dolore, non commodi quaerat aliquam
+      eligendi, quisquam totam blanditiis.
+    </p>
+    <div class="deadline">
+      <!-- days -->
+      <div class="deadline-format">
+        <div>
+          <h4 class="days">34</h4>
+          <span>days</span>
+        </div>
+      </div>
+      <!-- end of days -->
+      <!-- days -->
+      <div class="deadline-format">
+        <div>
+          <h4 class="hours">34</h4>
+          <span>hours</span>
+        </div>
+      </div>
+      <!-- end of days -->
+      <!-- minutes -->
+      <div class="deadline-format">
+        <div>
+          <h4 class="minutes">34</h4>
+          <span>mins</span>
+        </div>
+      </div>
+      <!-- end of days -->
+      <!-- minutes -->
+      <div class="deadline-format">
+        <div>
+          <h4 class="seconds">34</h4>
+          <span>secs</span>
+        </div>
+      </div>
+      <!-- end of days -->
     </div>
-    <div class="data-catch">
-    <span>${item.catch}</span>
-    </div>
-    <div class="data-update">
-    <i class="fa-solid fa-wrench"></i>
-    </div>
-    </article>`;
-  });
-  dataString = dataString.join("");
-  dataMain.innerHTML = dataString;
-};
-
-// Functions ends ========================================================
-// Event handlers ========================================================
-
-function showDataInit() {
-  showData(data);
-}
-
-function handleFilterBtnClick(event) {
-  const selectedCategory = event.currentTarget.dataset.id;
-  const CategorizedArray = data.filter((item) => {
-    if (item.category === selectedCategory) {
-      return item;
-    }
-  });
-  if (selectedCategory === "all") {
-    showData(data);
-  } else {
-    showData(CategorizedArray);
-  }
-}
-
-// Event handlers ends ===================================================
-// Eventlisteners ========================================================
-
-window.addEventListener("DOMContentLoaded", showDataInit);
-
-filterBtn.forEach((item) => {
-  item.addEventListener("click", handleFilterBtnClick);
-});
-
-// Eventlisteners ends ===================================================
+  </article>
+</section>
+<!-- javascript -->
+<script src="app.js"></script>
+</body>

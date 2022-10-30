@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url(reset.css);
+:root {
+  --black: #000;
+  --red: #d14836;
+  --white: #ffffff;
+}
+
+html {
+  font-family: "Cormorant Garamond", serif;
+}
+
+main {
+  background: var(--black);
+  display: grid;
+  justify-content: center;
+  padding: 100px 50px 50px 50px;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.img img {
+  max-width: 60vw;
+  filter: brightness(0.8);
+}
+
+.contents {
+  max-width: 80vw;
+}
+
+.description {
+  color: var(--white);
+  font-size: 1.2rem;
+  margin-top: 30px;
+  font-weight: 300;
+  position: relative;
+  left: 5vw;
+}
+
+.countdown {
+  color: #000;
+  display: flex;
+  margin-top: 70px;
+  position: relative;
+  right: 4vw;
+}
+
+.countdown-format {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-right: 1rem;
+  background-color: #d14836;
+  padding: 10px;
+}
+
+.countdown-format h1 {
+  text-align: center;
+}
+
+.countdown-format span {
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.text {
+  width: 80vw;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 7rem;
+  font-size: 5rem;
+  font-weight: 100;
+}
+.text div {
+  display: flex;
+  justify-content: center;
+}
+
+.text div div:first-child {
+  background-color: #d14836;
+  color: #000;
+  font-weight: 400;
+}
