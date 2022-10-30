@@ -1,0 +1,52 @@
+.about {
+  height: 100vh;
+  background-color: inherit;
+  padding: 25px;
+  box-sizing: border-box;
+}
+.about-container {
+  height: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 3fr;
+  align-content: center;
+}
+
+.about-header {
+  display: flex;
+  position: relative;
+  padding: 50px 10px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.about-description {
+  display: flex;
+  flex-direction: column;
+  width: 45vw;
+  font-size: 2rem;
+  flex-wrap: nowrap;
+}
+.about-description span:first-child {
+  margin-left: 8rem;
+}
+
+.about-additional {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20vw;
+  height: 70%;
+  font-size: 0.9rem;
+  font-weight: 300;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  margin-top: 30px;
+}
+
+.about-img img {
+  border-radius: 10px;
+  max-height: calc(100vh - 50px);
+  max-width: 40vw;
+}
