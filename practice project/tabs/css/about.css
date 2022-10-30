@@ -1,6 +1,7 @@
 .about {
   height: 100vh;
-  background-color: inherit;
+  width: 100vw;
+  background-color: rgb(236, 236, 236);
   padding: 25px;
   box-sizing: border-box;
 }

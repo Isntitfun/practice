@@ -9,4 +9,43 @@
 html {
   font-family: "Raleway", sans-serif;
   background-color: rgb(236, 236, 236);
+  /* filter: brightness(0.6); */
+}
+
+body {
+  background-color: inherit;
+  overflow: hidden;
+}
+
+body > section {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: all 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    height 0.9s ease-in;
+  overflow: hidden;
+}
+
+@keyframes active {
+  0% {
+    height: 0;
+
+    z-index: 1;
+  }
+  100% {
+    height: 0;
+  }
+}
+
+.previous {
+  transform: scale(0.9);
+  filter: blur(3px);
+  z-index: -1;
+}
+
+.deactive {
+  z-index: -1;
+  transform: translateY(100%);
+  padding: 0px 25px;
+  box-sizing: border-box;
 }
