@@ -1,2 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url(reset.css);
 @import url(home.css);
+@import url(work.css);
+
+html {
+  font-family: "Raleway", sans-serif;
+  background-color: rgb(236, 236, 236);
+}

@@ -1,0 +1,28 @@
+.work {
+  height: 100vh;
+  background-color: inherit;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.work-container {
+  height: calc(100vh - 50px);
+  background: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.work-header {
+  font-size: 8rem;
+  text-transform: uppercase;
+  letter-spacing: -8px;
+  text-align: center;
+}
+
+.work-main {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 30px;
+}

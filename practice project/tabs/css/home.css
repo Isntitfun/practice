@@ -1,8 +1,11 @@
 .home {
-  margin: 25px;
+  height: 100vh;
+  background-color: inherit;
+  padding: 25px;
+  box-sizing: border-box;
 }
 .home-container {
-  height: calc(100vh - (25px * 2));
+  height: calc(100vh - 50px);
   background: linear-gradient(
       25deg,
       rgb(255, 178, 168, 0.35),
@@ -33,15 +36,16 @@
 
 .home-header span {
   color: white;
-  font-size: 10rem;
+  font-size: 8rem;
   text-transform: uppercase;
+  letter-spacing: -8px;
 }
 
 .home-main p {
   color: white;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .home-footer {
@@ -56,4 +60,7 @@
 
 .home-footer div {
   color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
