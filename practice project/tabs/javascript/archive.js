@@ -17,6 +17,7 @@ const handleDomLoad = () => {
     });
   };
   archiveInput();
+  window.scrollTo(0, 0);
 };
 
 window.addEventListener("DOMContentLoaded", handleDomLoad);

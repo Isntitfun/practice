@@ -8,33 +8,6 @@
     <title>Document</title>
   </head>
   <body>
-    <section class="home">
-      <div class="home-container">
-        <div class="home-header">
-          <span>kirsch</span><br />
-          <span>berg</span>
-        </div>
-        <div class="home-main">
-          <p>
-            WORKING AT THE INTERSECTION OF WEB AND PRODUCT DESIGN TO <br />
-            CREATE EXPERIENCES THAT DELIGHT, INSPIRE AND SHAPE THE <br />
-            FUTURE OF THE INTERNET.
-          </p>
-        </div>
-        <div class="home-footer">
-          <div class="last-update">
-            <span>Last Updated</span>
-            <span class="date"></span>
-          </div>
-          <div class="weather">
-            <span>NYC</span>
-            <span>9</span>
-            <span>9 deg</span>
-            <i class="fa-regular fa-sun"></i>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="work deactive">
       <div class="work-container">
         <div class="work-header">
@@ -82,12 +55,39 @@
         </div>
       </div>
     </section>
+    <section class="home">
+      <div class="home-container">
+        <div class="home-header">
+          <span>kirsch</span><br />
+          <span>berg</span>
+        </div>
+        <div class="home-main">
+          <p>
+            WORKING AT THE INTERSECTION OF WEB AND PRODUCT DESIGN TO <br />
+            CREATE EXPERIENCES THAT DELIGHT, INSPIRE AND SHAPE THE <br />
+            FUTURE OF THE INTERNET.
+          </p>
+        </div>
+        <div class="home-footer">
+          <div class="last-update">
+            <span>Last Updated</span>
+            <span class="date"></span>
+          </div>
+          <div class="weather">
+            <span>NYC</span>
+            <span>9</span>
+            <span>9 deg</span>
+            <i class="fa-regular fa-sun"></i>
+          </div>
+        </div>
+      </div>
+    </section>
     <nav>
       <div class="nav-container">
-        <a href="#home" class="link">home</a>
-        <a href="#work" class="link">work</a>
-        <a href="#archive" class="link">archive</a>
-        <a href="#about" class="link">about</a>
+        <a data-id="home" class="link">home</a>
+        <a data-id="work" class="link">work</a>
+        <a data-id="archive" class="link">archive</a>
+        <a data-id="about" class="link">about</a>
       </div>
     </nav>
   </body>
@@ -96,4 +96,5 @@
     crossorigin="anonymous"
   ></script>
   <script src="javascript/archive.js"></script>
+  <script src="javascript/app.js"></script>
 </html>

@@ -9,7 +9,7 @@
   background-color: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(3px);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
   z-index: 10;
@@ -21,4 +21,12 @@
   font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+.link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
