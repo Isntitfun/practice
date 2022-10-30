@@ -14,7 +14,7 @@ main {
   background: var(--black);
   display: grid;
   justify-content: center;
-  padding: 100px 50px 50px 50px;
+  padding: 50px 50px 50px 50px;
 }
 
 .img {
@@ -44,16 +44,23 @@ main {
   color: #000;
   display: flex;
   margin-top: 70px;
-  position: relative;
-  right: 4vw;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 4rem;
+  font-size: 7rem;
+  font-weight: 500;
+
 }
 
 .countdown-format {
+  width: 3rem;
   font-size: 1.6rem;
   font-weight: 500;
   margin-right: 1rem;
   background-color: #d14836;
   padding: 10px;
+  text-align: center;
 }
 
 .countdown-format h1 {
@@ -63,14 +70,15 @@ main {
 .countdown-format span {
   text-transform: capitalize;
   font-size: 1rem;
+  text-align: center;
 }
 
 .text {
   width: 80vw;
   color: #ffffff;
   text-align: center;
-  margin-top: 7rem;
-  font-size: 5rem;
+  margin-top: 2rem;
+  font-size: 7rem;
   font-weight: 100;
 }
 .text div {
@@ -78,8 +86,11 @@ main {
   justify-content: center;
 }
 
-.text div div:first-child {
+.text span {
+  display: inline-block;
   background-color: #d14836;
   color: #000;
   font-weight: 400;
+  text-transform: uppercase;
 }
+
