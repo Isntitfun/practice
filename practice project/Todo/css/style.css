@@ -26,6 +26,7 @@ body {
   background-color: rgba(0, 0, 0, 0.02);
   overflow-y: scroll;
   padding-left: 16px;
+  border-radius: 30px;
   position: relative;
 }
 
@@ -51,4 +52,15 @@ header {
   justify-content: center;
   align-items: center;
   margin: 30px;
+}
+
+.btn {
+  appearance: none;
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+input[type="text"] {
+  font-family: "Montserrat Alternates", sans-serif;
 }
