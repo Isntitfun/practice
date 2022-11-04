@@ -1,15 +1,18 @@
 .console {
   width: 100%;
-  height: 80px;
-  padding: 0px 30px;
+  height: 115px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px 0px 36px;
   position: absolute;
   bottom: 0;
   left: 0;
   box-sizing: border-box;
+  background-color: var(--bg-color);
 }
 
 .console-wrapper {
-  width: 390px;
+  width: 378px;
   display: grid;
   justify-content: stretch;
   align-items: center;
@@ -19,9 +22,12 @@
 }
 
 .main-row {
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transform: translateY(10px);
+  transition: transform 0.3s ease-out;
 }
 .main-input {
   position: relative;
@@ -31,19 +37,23 @@
 
 #content {
   outline: none;
-  width: 290px;
+  width: 275px;
   height: 35px;
   padding-right: 35px;
   padding-left: 20px;
   border-radius: 10px;
   border: none;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--console-input-bgcolor);
+  font-size: 1.05rem;
+
 }
 
 #content + button {
   position: absolute;
   right: 7px;
   font-size: 13px;
+  color: var(--console-icon-color);
+
 }
 
 #submit {
@@ -53,27 +63,36 @@
   height: 37px;
   width: 37px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--console-input-bgcolor);
   font-family: "Montserrat Alternates", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
+  color: var(--console-icon-color);
 }
 
 .hidden-row {
+  z-index: 1;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  align-content: center;
+  color: var(--console-font-color);
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.5s ease-in, transform 0.3s ease-out;
 }
 
 #category {
   outline: none;
-  width: 200px;
-  height: 25px;
+  width: calc(275px - 18px);
+  height: 23px;
   padding-right: 20px;
   padding-left: 20px;
   border-radius: 8px;
   border: none;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--console-input-bgcolor);
+  color: var(--console-font-color);
+  font-size: 0.87rem;
 }
 
 #color {
@@ -82,7 +101,35 @@
   border: none;
   background-color: transparent;
   margin-left: 5px;
-  height: 33px;
-  width: 33px;
-  border-radius: 15px;
+  height: 32px;
+  width: 27px;
+}
+
+#color::-webkit-color-swatch {
+  border-radius: 8px;
+}
+
+.console-wrapper:focus-within .main-row {
+  transform: translateY(0);
+}
+
+.console-wrapper:focus-within .hidden-row {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.console-wrapper input {
+  transition:  background-color 0.3s ease-out, color 0.3s ease-out;
+}
+
+
+#content:focus,
+#category:focus {
+  background-color: var(--console-input-activecolor);
+  color: white;
+}
+
+#submit:hover {
+  background-color: var(--signature-orange);
+  color: white;
 }

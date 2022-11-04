@@ -3,6 +3,18 @@
 @import url(list.css);
 @import url(console.css);
 
+:root {
+  --category-padding: 15px 15px 10px 15px;
+  --item-padding: 10px 15px 8px 15px;
+  --bg-color: rgb(250, 250, 250);
+  --console-font-color: rgb(88, 88, 88);
+  --console-icon-color: rgb(173, 173, 173);
+  --console-input-bgcolor: rgb(240, 240, 240);
+  --console-input-activecolor: rgb(31, 31, 31);
+  --signature-orange: rgb(255, 154, 107);
+
+}
+
 html {
   font-family: "Montserrat Alternates", sans-serif;
   width: 100vw;
@@ -23,11 +35,12 @@ body {
 .screen {
   width: 450px;
   height: 780px;
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: var(--bg-color);
   overflow-y: scroll;
   padding-left: 16px;
   border-radius: 30px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .screen::-webkit-scrollbar {
@@ -64,3 +77,13 @@ header {
 input[type="text"] {
   font-family: "Montserrat Alternates", sans-serif;
 }
+
+span {
+  display: flex;
+  align-items: center;
+}
+
+/* .item {
+  display: none;
+} */
+

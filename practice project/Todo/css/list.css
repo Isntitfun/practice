@@ -5,20 +5,25 @@
 
 .list {
   padding: 10px;
+  display: grid;
+  grid-auto-flow: row;
 }
 
 .category-container {
   display: grid;
   justify-content: stretch;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.02);
+  color: white;
+  margin-bottom: 6px;
 }
 
 .category {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  background-color: rgba(0, 0, 0);
+  border-radius: 10px;
+  padding: var(--category-padding)
 }
 
 .item-container {
@@ -26,13 +31,17 @@
   justify-content: stretch;
   align-items: center;
   padding-left: 15px;
-  margin-top: 3px;
-  background-color: rgba(0, 0, 0, 0.02);
+  margin-top: 6px;
+  gap: 3px;
+
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: var(--item-padding);
+  background-color: rgb(236, 236, 236);
+  color: black;
+  border-radius: 10px;
 }
