@@ -1,0 +1,38 @@
+.display {
+  padding: 10px;
+  /* margin-bottom: 700px; */
+}
+
+.list {
+  padding: 10px;
+}
+
+.category-container {
+  display: grid;
+  justify-content: stretch;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.item-container {
+  display: grid;
+  justify-content: stretch;
+  align-items: center;
+  padding-left: 15px;
+  margin-top: 3px;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
