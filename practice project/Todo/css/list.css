@@ -21,19 +21,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0);
+  background-color: var(--console-input-activecolor);
   border-radius: 10px;
-  padding: var(--category-padding)
+  padding: var(--category-padding);
+}
+
+.category button {
+  color: rgb(216, 216, 216);
+  transition: 0.3s;
+}
+
+.category button:hover {
+  color: white;
 }
 
 .item-container {
   display: grid;
-  justify-content: stretch;
-  align-items: center;
   padding-left: 15px;
   margin-top: 6px;
-  gap: 3px;
+  overflow: hidden;
+  height: 0;
+  transition: 0.5s cubic-bezier(0.06, 0.74, 0.35, 1.015);
+}
 
+.item-wrapper {
+  display: grid;
+  justify-content: stretch;
+  align-items: flex-start;
+  gap: 3px;
 }
 
 .item {
@@ -44,4 +59,13 @@
   background-color: rgb(236, 236, 236);
   color: black;
   border-radius: 10px;
+}
+
+.item button {
+  color: var(--console-icon-color);
+  transition: 0.3s;
+}
+
+.item button:hover {
+  color: black;
 }
