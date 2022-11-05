@@ -4,10 +4,9 @@
   display: flex;
   align-items: center;
   padding: 0px 20px 0px 36px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
   box-sizing: border-box;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
   background-color: var(--bg-color);
 }
 
@@ -17,7 +16,6 @@
   justify-content: stretch;
   align-items: center;
   align-content: center;
-  position: fixed;
   gap: 5px;
 }
 
@@ -35,7 +33,7 @@
   align-items: center;
 }
 
-#content {
+#text {
   outline: none;
   width: 275px;
   height: 35px;
@@ -44,16 +42,15 @@
   border-radius: 10px;
   border: none;
   background-color: var(--console-input-bgcolor);
+  backdrop-filter: blur(3px);
   font-size: 1.05rem;
-
 }
 
-#content + button {
+#text + button {
   position: absolute;
   right: 7px;
   font-size: 13px;
   color: var(--console-icon-color);
-
 }
 
 #submit {
@@ -64,6 +61,7 @@
   width: 37px;
   border-radius: 10px;
   background-color: var(--console-input-bgcolor);
+  backdrop-filter: blur(3px);
   font-family: "Montserrat Alternates", sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
@@ -76,6 +74,7 @@
   justify-content: flex-start;
   align-items: center;
   align-content: center;
+  gap: 5px;
   color: var(--console-font-color);
   opacity: 0;
   transform: translateY(-30px);
@@ -84,13 +83,30 @@
 
 #category {
   outline: none;
-  width: calc(275px - 18px);
+  width: calc(245px - 170px);
   height: 23px;
   padding-right: 20px;
   padding-left: 20px;
+  padding-top: 1px;
   border-radius: 8px;
   border: none;
   background-color: var(--console-input-bgcolor);
+  backdrop-filter: blur(3px);
+  color: var(--console-font-color);
+  font-size: 0.87rem;
+}
+
+#title {
+  outline: none;
+  width: calc(170px);
+  height: 23px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 1px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--console-input-bgcolor);
+  backdrop-filter: blur(3px);
   color: var(--console-font-color);
   font-size: 0.87rem;
 }
@@ -100,9 +116,9 @@
   appearance: none;
   border: none;
   background-color: transparent;
-  margin-left: 5px;
   height: 32px;
   width: 27px;
+  margin-left: 8px;
 }
 
 #color::-webkit-color-swatch {
@@ -119,17 +135,18 @@
 }
 
 .console-wrapper input {
-  transition:  background-color 0.3s ease-out, color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, color 0.3s ease-out;
 }
 
-
-#content:focus,
-#category:focus {
+#text:focus,
+#category:focus,
+#title:focus {
   background-color: var(--console-input-activecolor);
   color: white;
 }
 
-#submit:hover {
+#submit:hover,
+#submit:focus {
   background-color: var(--signature-orange);
   color: white;
 }
