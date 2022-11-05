@@ -1,4 +1,6 @@
 const list = document.querySelector(".list");
+const alert = document.querySelector(".alert");
+const alertMessage = document.querySelector(".alert span");
 
 function resetGUI() {
   const categories = document.querySelectorAll(".category-container");
@@ -25,6 +27,16 @@ const itemText = document.getElementById("text");
 const itemTitle = document.getElementById("title");
 const itemCategory = document.getElementById("category");
 const itemColor = document.getElementById("color");
+
+const showAlert = (type, message) => {
+  alert.classList.add(`alert-${type}`);
+  alertMessage.innerText = message;
+
+  const hideAlert = () => {
+    alert.classList.remove(`alert-${type}`);
+  };
+  setTimeout(hideAlert, 1300);
+};
 
 const createNewItem = (targetCategory) => {
   const textValue = itemText.value;
@@ -99,61 +111,15 @@ const handleFormSubmit = (e) => {
   if (existingCategories.includes(categoryValue)) {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
+    showAlert("normal", "Item Added");
   } else {
     createNewCategory(categoryValue);
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
+    showAlert("normal", "Category Added");
   }
 
   resetGUI();
-  //   const newCategory = document.createElement("div");
-  //   const newItem = document.createElement("div");
-  //   let itemid = document.createAttribute("category-id");
-  //   let catid = document.createAttribute("item-id");
-  //   newCategory.setAttributeNode(catid);
-  //   newItem.setAttributeNode(itemid);
-  //   newCategory.classList.add("category-container");
-  //   newItem.classList.add("item");
-
-  //   newCategory.innerHTML = `
-  //     <div class="category">
-  //         <div class="category-title">${categoryValue}</div>
-  //         <div class="btn-box">
-  //             <button class="btn edit-btn">
-  //                 <i class="fa-regular fa-pen-to-square"></i>
-  //             </button>
-  //             <button class="btn delete-btn">
-  //                 <i class="fa-regular fa-square-minus"></i>
-  //             </button>
-  //             <button class="btn delete-btn">
-  //                  <i class="btn fa-solid fa-trash"></i>
-  //             </button>
-  //         </div>
-  //     </div>
-  //     <div class="item-container">
-  //         <div class="item-wrapper">
-  //         </div>
-  //     </div>`;
-
-  //   newItem.innerHTML = `
-  //     <div class="item">
-  //         <div class="item-row1">
-  //           <div class="item-title">${itemTitle}</div>
-  //           <div class="btn-box">
-  //             <button class="btn edit-btn">
-  //               <i class="fa-regular fa-pen-to-square"></i>
-  //             </button>
-  //             <button class="btn delete-btn">
-  //               <i class="fa-regular fa-square-minus"></i>
-  //             </button>
-  //           </div>
-  //         </div>
-  //         <div class="item-row2">
-  //         ${itemText}
-  //         </div>
-  //     </div>
-  // `;
-  //   list.appendChild(newCategory);
 };
 
 form.addEventListener("submit", handleFormSubmit);

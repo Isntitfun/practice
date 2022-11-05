@@ -8,11 +8,15 @@
   --item-padding: 15px 15px 15px 15px;
   --bg-color: rgb(241, 241, 241);
   --console-font-color: rgb(88, 88, 88);
-  --console-icon-color: rgb(143, 143, 143);
-  --console-input-bgcolor: rgb(78, 78, 78, 0.3);
+  --console-icon-color: rgb(180, 180, 180);
+  --console-input-bgcolor: rgba(163, 163, 163, 0.35);
   --console-input-activecolor: rgb(15, 15, 15);
-  --item-color: #2b2b2b;
-  --signature-orange: hsl(19, 100%, 71%);
+
+  --item-color: #ffffff;
+
+  --signature-black: rgb(15, 15, 15);
+  --signature-orange: rgb(255, 161, 117);
+  --signature-orange-opaque: rgb(255, 161, 117, 0.8);
 }
 
 html {
@@ -39,8 +43,7 @@ body {
   background-color: var(--bg-color);
   overflow-y: scroll;
   padding-left: 16px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-radius: 30px;
   position: relative;
   box-sizing: border-box;
 }
@@ -64,7 +67,7 @@ body {
 
 header {
   width: 418px;
-  height: 85px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,38 +75,39 @@ header {
 }
 
 .alert-wrapper {
-  width: 418px;
-  height: 85px;
+  width: 450px;
+  height: 50px;
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding-left: 36px;
+  box-sizing: border-box;
 
-  background: linear-gradient(
-    rgba(241, 241, 241, 1) 30%,
-    rgba(241, 241, 241, 0)
-  );
-  backdrop-filter: blur(0.5px);
+  /* background: var(--bg-color); */
+  background: linear-gradient(rgb(255, 255, 255, 0.4), rgb(255, 255, 255, 0));
 }
 
 .alert {
-  margin-bottom: 40px;
-  width: 378px;
-  height: 25px;
+  width: 22px;
+  height: 20px;
+  margin-top: 20px;
+  padding: 0px 8px;
   padding-top: 2px;
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 7px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  background-color: var(--signature-orange);
-  color: white;
-  transition: 0.1s ease-in-out;
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: capitalize;
+  background-color: var(--signature-orange-opaque);
+  color: transparent;
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  /* display: none; */
 }
 
 .btn {
@@ -122,6 +126,13 @@ span {
   align-items: center;
 }
 
-/* .item {
-  display: none;
-} */
+.alert-normal {
+  width: 378px;
+  color: white;
+  background-color: var(--signature-orange);
+}
+.alert-attention {
+  width: 378px;
+  color: white;
+  background-color: var(--signature-black);
+}
