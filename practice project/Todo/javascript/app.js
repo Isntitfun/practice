@@ -28,6 +28,12 @@ const itemTitle = document.getElementById("title");
 const itemCategory = document.getElementById("category");
 const itemColor = document.getElementById("color");
 
+const resetForm = () => {
+  itemText.value = "";
+  itemTitle.value = "";
+  itemColor.value = "#ffffff";
+};
+
 const showAlert = (type, message) => {
   alert.classList.add(`alert-${type}`);
   alertMessage.innerText = message;
@@ -41,12 +47,14 @@ const showAlert = (type, message) => {
 const createNewItem = (targetCategory) => {
   const textValue = itemText.value;
   const titleValue = itemTitle.value;
+  const colorValue = itemColor.value;
+
   const newItem = document.createElement("div");
   let itemid = document.createAttribute("item-id");
   newItem.setAttributeNode(itemid);
   newItem.classList.add("item");
+  newItem.style.backgroundColor = `${colorValue}`;
   newItem.innerHTML = `
-      <div class="item">
           <div class="item-row1">
             <div class="item-title">${titleValue}</div>
             <div class="btn-box">
@@ -61,7 +69,6 @@ const createNewItem = (targetCategory) => {
           <div class="item-row2">
           ${textValue}
           </div>
-      </div>
   `;
   const targetLocation = targetCategory.querySelector(".item-wrapper");
   targetLocation.appendChild(newItem);
@@ -98,7 +105,6 @@ const createNewCategory = (categoryValue) => {
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const categoryValue = itemCategory.value;
-  const colorValue = itemColor.value;
   const itemID = `itemID${new Date().getTime().toString()}`;
   const categoryID = `categoryID${new Date().getTime().toString()}`;
 
@@ -124,6 +130,7 @@ const handleFormSubmit = (e) => {
   }
 
   resetGUI();
+  resetForm();
 };
 
 form.addEventListener("submit", handleFormSubmit);
