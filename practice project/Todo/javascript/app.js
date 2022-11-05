@@ -111,12 +111,16 @@ const handleFormSubmit = (e) => {
   if (existingCategories.includes(categoryValue)) {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
-    showAlert("normal", "Item Added");
+    showAlert("normal", `Item Added in ${categoryValue}`);
+  } else if (categoryValue === "") {
+    const targetCategory = document.getElementById(`catID${categoryValue}`);
+    createNewItem(targetCategory);
+    showAlert("normal", `Item Added in General`);
   } else {
     createNewCategory(categoryValue);
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
-    showAlert("normal", "Category Added");
+    showAlert("normal", `New category Added - ${categoryValue}`);
   }
 
   resetGUI();

@@ -127,12 +127,18 @@ span {
 }
 
 .alert-normal {
+  opacity: 1;
   width: 378px;
   color: white;
   background-color: var(--signature-orange);
 }
 .alert-attention {
+  opacity: 1;
   width: 378px;
   color: white;
   background-color: var(--signature-black);
+}
+
+.alert-hidden {
+  opacity: 0;
 }
