@@ -20,7 +20,16 @@
         <section class="list">
           <div class="category-container" id="catID">
             <div class="category">
-              <div class="category-title">General</div>
+              <div class="category-title">
+                <textarea
+                  cols="26"
+                  rows="1"
+                  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+                  readonly
+                >
+General</textarea
+                >
+              </div>
               <div class="btn-box">
                 <button class="btn edit-btn">
                   <i class="fa-regular fa-pen-to-square"></i>
@@ -37,7 +46,16 @@
               <div class="item-wrapper">
                 <div class="item">
                   <div class="item-row1">
-                    <div class="item-title">something1</div>
+                    <div class="item-title">
+                      <textarea
+                        cols="23"
+                        rows="1"
+                        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+                        readonly
+                      >
+Example</textarea
+                      >
+                    </div>
                     <div class="btn-box">
                       <button class="btn edit-btn">
                         <i class="fa-regular fa-pen-to-square"></i>
@@ -48,26 +66,14 @@
                     </div>
                   </div>
                   <div class="item-row2">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Earum harum, doloremque reprehenderit inventore
-                    necessitatibus fugiat! Assumenda illo veritatis eum saepe
-                    rerum tempore exercitationem, ullam corporis quidem, fugiat
-                    vitae sint? Distinctio.
+                    <textarea
+                      cols="41"
+                      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+                      readonly
+                    >
+Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus aliquid id debitis eligendi doloribus corrupti alias suscipit exercitationem</textarea
+                    >
                   </div>
-                </div>
-                <div class="item">
-                  <div class="item-row1">
-                    <div class="item-title">something2</div>
-                    <div class="btn-box">
-                      <button class="btn edit-btn">
-                        <i class="fa-regular fa-pen-to-square"></i>
-                      </button>
-                      <button class="btn delete-btn">
-                        <i class="fa-regular fa-square-minus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="item-row2">hello nice to meet you</div>
                 </div>
               </div>
             </div>

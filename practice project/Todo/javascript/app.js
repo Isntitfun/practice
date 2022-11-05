@@ -4,21 +4,40 @@ const alertMessage = document.querySelector(".alert span");
 
 function resetGUI() {
   const categories = document.querySelectorAll(".category-container");
-  const handleCategoryClick = (event) => {
+  const category = document.querySelectorAll(".category");
+
+  const handleCategoriesClick = (event) => {
     const itemContainer = event.currentTarget.querySelector(".item-container");
     const itemWrapper = itemContainer.querySelector(".item-wrapper");
     const itemContainerHeight = itemContainer.getBoundingClientRect().height;
     const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
     if (itemContainerHeight === 0) {
       itemContainer.style.height = `${itemWrapperHeight}px`;
-    } else {
+    }
+  };
+
+  const handleCategoryClick = (event) => {
+    const itemContainer = event.currentTarget.nextElementSibling;
+    const itemWrapper = itemContainer.querySelector(".item-wrapper");
+    const itemContainerHeight = itemContainer.getBoundingClientRect().height;
+    const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
+
+    if (itemContainerHeight > 0) {
       itemContainer.style.height = `0px`;
     }
   };
 
   categories.forEach((item) => {
+    item.addEventListener("click", handleCategoriesClick);
+  });
+
+  category.forEach((item) => {
     item.addEventListener("click", handleCategoryClick);
   });
+
+  const textarea = document.querySelectorAll("textarea");
+  textarea[2].textContent += " ";
+  console.log(textarea[2].textContent);
 }
 
 // input submit
@@ -56,7 +75,15 @@ const createNewItem = (targetCategory) => {
   newItem.style.backgroundColor = `${colorValue}`;
   newItem.innerHTML = `
           <div class="item-row1">
-            <div class="item-title">${titleValue}</div>
+            <div class="item-title">
+            <textarea
+            cols="23"
+            rows="1"
+            oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+            readonly
+          >${titleValue}</textarea
+          >
+            </div>
             <div class="btn-box">
               <button class="btn edit-btn">
                 <i class="fa-regular fa-pen-to-square"></i>
@@ -67,7 +94,13 @@ const createNewItem = (targetCategory) => {
             </div>
           </div>
           <div class="item-row2">
-          ${textValue}
+          <textarea
+          cols="41"
+          rows="1"
+          oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+          readonly
+        >${textValue}</textarea
+        >
           </div>
   `;
   const targetLocation = targetCategory.querySelector(".item-wrapper");
@@ -82,7 +115,17 @@ const createNewCategory = (categoryValue) => {
   newCategory.setAttribute("id", `catID${categoryValue}`);
   newCategory.innerHTML = `
   <div class="category">
-      <div class="category-title">${categoryValue}</div>
+      <div class="category-title">
+      <textarea
+      cols="26"
+      rows="1"
+      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+      readonly
+    >
+    ${categoryValue}</textarea
+    >
+
+      </div>
       <div class="btn-box">
           <button class="btn edit-btn">
               <i class="fa-regular fa-pen-to-square"></i>
@@ -104,6 +147,8 @@ const createNewCategory = (categoryValue) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
+
+  const textValue = itemText.value;
   const categoryValue = itemCategory.value;
   const itemID = `itemID${new Date().getTime().toString()}`;
   const categoryID = `categoryID${new Date().getTime().toString()}`;
@@ -112,16 +157,17 @@ const handleFormSubmit = (e) => {
   const existingCategories = categoryRawData.map(
     (item) => item.querySelector(".category-title").innerText
   );
-  console.log(existingCategories);
 
-  if (existingCategories.includes(categoryValue)) {
-    const targetCategory = document.getElementById(`catID${categoryValue}`);
-    createNewItem(targetCategory);
-    showAlert("normal", `Item Added in ${categoryValue}`);
+  if (textValue === "") {
+    showAlert("attention", `Content is absent`);
   } else if (categoryValue === "") {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
     showAlert("normal", `Item Added in General`);
+  } else if (existingCategories.includes(categoryValue)) {
+    const targetCategory = document.getElementById(`catID${categoryValue}`);
+    createNewItem(targetCategory);
+    showAlert("normal", `Item Added in ${categoryValue}`);
   } else {
     createNewCategory(categoryValue);
     const targetCategory = document.getElementById(`catID${categoryValue}`);

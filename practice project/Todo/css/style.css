@@ -118,6 +118,9 @@ header {
 }
 
 input[type="text"] {
+  appearance: none;
+  outline: none;
+  border: none;
   font-family: "Montserrat Alternates", sans-serif;
 }
 

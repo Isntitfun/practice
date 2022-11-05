@@ -19,6 +19,39 @@
   margin-bottom: 6px;
 }
 
+.category-container textarea {
+  outline: none;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  font-family: "Montserrat Alternates", sans-serif;
+  resize: none;
+  overflow: visible;
+}
+
+.category-container textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.category-title textarea {
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.item-title textarea {
+  color: black;
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+
+.item-row2 textarea {
+  color: black;
+  font-size: 0.89rem;
+  font-weight: 300;
+  overflow: visible;
+}
+
 .category {
   display: flex;
   justify-content: space-between;
@@ -28,6 +61,14 @@
   font-size: 1.05rem;
   font-weight: 500;
   padding: var(--category-padding);
+}
+
+.category-title input {
+  width: 240px;
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 500;
+  background-color: var(--signature-black);
 }
 
 .category button {
@@ -74,16 +115,26 @@
 
 .item-row2 {
   margin-top: 15px;
+  padding: 7px;
+}
+
+.item-row2 input {
   font-size: 0.89rem;
   font-weight: 300;
-  padding: 7px;
+  word-wrap: break-word;
 }
 
 .item-title {
   text-transform: capitalize;
-  border-bottom: 0.5px solid white;
-  padding: 2px;
-  padding-bottom: 5px;
+  padding-left: 2px;
+  padding-top: 3px;
+}
+
+.item-title input {
+  text-transform: capitalize;
+  font-size: 1.02rem;
+  background-color: var(--item-color);
+  font-weight: 500;
 }
 
 .item button {
