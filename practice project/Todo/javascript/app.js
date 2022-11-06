@@ -10,9 +10,13 @@ function resetGUI() {
     const itemContainer = event.currentTarget.querySelector(".item-container");
     const itemWrapper = itemContainer.querySelector(".item-wrapper");
     const itemContainerHeight = itemContainer.getBoundingClientRect().height;
-    const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
     if (itemContainerHeight === 0) {
+      const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
+      console.log(itemWrapperHeight);
       itemContainer.style.height = `${itemWrapperHeight}px`;
+      setTimeout(function () {
+        itemContainer.style.overflow = "visible";
+      }, 450);
     }
   };
 
@@ -23,7 +27,15 @@ function resetGUI() {
     const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
 
     if (itemContainerHeight > 0) {
-      itemContainer.style.height = `0px`;
+      const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
+      console.log(itemWrapperHeight);
+      itemContainer.style.height = `${itemWrapperHeight}px`;
+      console.log(itemContainer.style.height);
+
+      setTimeout(function () {
+        itemContainer.style.overflow = "hidden";
+        itemContainer.style.height = `0px`;
+      }, 300);
     }
   };
 
@@ -34,10 +46,6 @@ function resetGUI() {
   category.forEach((item) => {
     item.addEventListener("click", handleCategoryClick);
   });
-
-  const textarea = document.querySelectorAll("textarea");
-  textarea[2].textContent += " ";
-  console.log(textarea[2].textContent);
 }
 
 // input submit
@@ -76,12 +84,8 @@ const createNewItem = (targetCategory) => {
   newItem.innerHTML = `
           <div class="item-row1">
             <div class="item-title">
-            <textarea
-            cols="23"
-            rows="1"
-            oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-            readonly
-          >${titleValue}</textarea
+            <span class="txtbox item-title-txtbox" contenteditable
+            >${titleValue}</span
           >
             </div>
             <div class="btn-box">
@@ -94,14 +98,9 @@ const createNewItem = (targetCategory) => {
             </div>
           </div>
           <div class="item-row2">
-          <textarea
-          cols="41"
-          rows="1"
-          oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-          readonly
-        >${textValue}</textarea
-        >
-          </div>
+          <span class="txtbox item-content-txtbox" contenteditable
+          >${textValue}</span
+        ></div>
   `;
   const targetLocation = targetCategory.querySelector(".item-wrapper");
   targetLocation.appendChild(newItem);
@@ -116,15 +115,9 @@ const createNewCategory = (categoryValue) => {
   newCategory.innerHTML = `
   <div class="category">
       <div class="category-title">
-      <textarea
-      cols="26"
-      rows="1"
-      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-      readonly
+      <span class="txtbox category-title-txtbox" contenteditable=""
+      >${categoryValue}</span
     >
-    ${categoryValue}</textarea
-    >
-
       </div>
       <div class="btn-box">
           <button class="btn edit-btn">
@@ -180,4 +173,5 @@ const handleFormSubmit = (e) => {
 };
 
 form.addEventListener("submit", handleFormSubmit);
+
 resetGUI();
