@@ -20,7 +20,6 @@ function resetGUI() {
         itemContainer.style.overflow = "visible";
       }, 450);
     }
-    console.log(event.currentTarget);
   };
 
   const handleCategoryClick = (event) => {
@@ -39,37 +38,6 @@ function resetGUI() {
       }, 300);
     }
   };
-
-  // const preventClick = (item) => {
-  //   if (typeof item !== "object") {
-  //     const handlePreventClick = (event) => {
-  //       event.stopPropagation();
-  //     };
-  //     item.addEventListener("click", handlePreventClick);
-  //     console.log("mono prevent");
-  //   } else {
-  //     const handlePreventClick = (event) => {
-  //       event.stopPropagation();
-  //     };
-
-  //     item.forEach((item) =>
-  //       item.addEventListener("click", handlePreventClick)
-  //     );
-  //     console.log("multi prevent");
-  //   }
-  // };
-
-  // const acceptClick = (item) => {
-  //   if (typeof item !== "object") {
-  //     item.removeEventListener("click", handlePreventClick);
-  //     console.log("mono accept");
-  //   } else {
-  //     item.forEach((item) =>
-  //       item.removeEventListener("click", handlePreventClick)
-  //     );
-  //     console.log("multi accpet");
-  //   }
-  // };
 
   const handleCategoryEditBtnClick = (event) => {
     event.stopPropagation();
@@ -181,7 +149,7 @@ const createNewItem = (targetCategory) => {
   newItem.innerHTML = `
           <div class="item-row1">
             <div class="item-title">
-            <span spellcheck="false" class="txtbox item-title-txtbox" contenteditable
+            <span spellcheck="false" class="txtbox item-title-txtbox"
             >${titleValue}</span
           >
             </div>
@@ -195,7 +163,7 @@ const createNewItem = (targetCategory) => {
             </div>
           </div>
           <div class="item-row2">
-          <span spellcheck="false" class="txtbox item-content-txtbox" contenteditable
+          <span spellcheck="false" class="txtbox item-content-txtbox"
           >${textValue}</span
         ></div>
   `;
@@ -204,7 +172,7 @@ const createNewItem = (targetCategory) => {
 };
 
 const createNewCategory = (categoryValue) => {
-  const categoryID = `categoryID${new Date().getTime().toString()}`;
+  const categoryID = `${new Date().getTime().toString()}`;
   const newCategory = document.createElement("div");
   let catid = document.createAttribute("cat-id");
   newCategory.setAttributeNode(catid);
@@ -213,7 +181,7 @@ const createNewCategory = (categoryValue) => {
   newCategory.innerHTML = `
   <div class="category">
       <div class="category-title">
-      <span spellcheck="false" class="txtbox category-title-txtbox" contenteditable=""
+      <span spellcheck="false" class="txtbox category-title-txtbox"
       >${categoryValue}</span
     >
       </div>
@@ -246,6 +214,7 @@ const handleFormSubmit = (e) => {
   const existingCategories = categoryRawData.map(
     (item) => item.querySelector(".category-title").innerText
   );
+  const existingCategoriesID = categoryRawData.map((item) => item.id);
 
   if (textValue === "") {
     showAlert("attention", `Content is absent`);
@@ -254,12 +223,26 @@ const handleFormSubmit = (e) => {
     createNewItem(targetCategory);
     showAlert("normal", `Item Added in General`);
   } else if (existingCategories.includes(categoryValue)) {
-    const targetCategory = document.getElementById(`catID${categoryValue}`);
+    const targetCategory = document.getElementById(
+      `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
+    );
     createNewItem(targetCategory);
     showAlert("normal", `Item Added in ${categoryValue}`);
   } else {
     createNewCategory(categoryValue);
-    const targetCategory = document.getElementById(`catID${categoryValue}`);
+    const categoryRawData = [
+      ...document.querySelectorAll(".category-container"),
+    ];
+    const existingCategories = categoryRawData.map(
+      (item) => item.querySelector(".category-title").innerText
+    );
+    const existingCategoriesID = categoryRawData.map((item) => item.id);
+
+    console.dir(existingCategories);
+    console.dir(existingCategoriesID);
+    const targetCategory = document.getElementById(
+      `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
+    );
     createNewItem(targetCategory);
     showAlert("normal", `New category Added - ${categoryValue}`);
   }
