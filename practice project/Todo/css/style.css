@@ -16,6 +16,7 @@
 
   --signature-black: rgb(15, 15, 15);
   --signature-orange: rgb(255, 161, 117);
+  --signature-orange-emphasis: rgb(255, 131, 74);
   --signature-orange-opaque: rgb(255, 161, 117, 0.8);
 }
 

@@ -74,6 +74,15 @@
   color: white;
 }
 
+.active-btn {
+  color: var(--signature-orange) !important ;
+  transition: 0.3s;
+}
+
+.active-btn:hover {
+  color: var(--signature-orange-emphasis) !important;
+}
+
 .item-container {
   display: grid;
   align-content: flex-start;
