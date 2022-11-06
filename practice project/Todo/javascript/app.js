@@ -5,6 +5,8 @@ const alertMessage = document.querySelector(".alert span");
 function resetGUI() {
   const categories = document.querySelectorAll(".category-container");
   const category = document.querySelectorAll(".category");
+  const itemEditBtn = document.querySelectorAll(".item .edit-btn");
+  const categoryEditBtn = document.querySelectorAll(".category .edit-btn");
 
   const handleCategoriesClick = (event) => {
     const itemContainer = event.currentTarget.querySelector(".item-container");
@@ -12,7 +14,6 @@ function resetGUI() {
     const itemContainerHeight = itemContainer.getBoundingClientRect().height;
     if (itemContainerHeight === 0) {
       const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
-      console.log(itemWrapperHeight);
       itemContainer.style.height = `${itemWrapperHeight}px`;
       setTimeout(function () {
         itemContainer.style.overflow = "visible";
@@ -28,14 +29,33 @@ function resetGUI() {
 
     if (itemContainerHeight > 0) {
       const itemWrapperHeight = itemWrapper.getBoundingClientRect().height;
-      console.log(itemWrapperHeight);
       itemContainer.style.height = `${itemWrapperHeight}px`;
-      console.log(itemContainer.style.height);
 
       setTimeout(function () {
         itemContainer.style.overflow = "hidden";
         itemContainer.style.height = `0px`;
       }, 300);
+    }
+  };
+
+  const handleCategoryEditBtnClick = (event) => {
+    event.stopPropagation();
+    const catID = event.currentTarget.parentElement.getAttribute("id");
+    const targetCategory = document.getElementById(`catID${catID}`);
+    const targetTxtbox = targetCategory.querySelectorAll(".txtbox");
+    let editflag = false;
+
+    console.log(targetTxtbox);
+    if (!editflag) {
+      targetTxtbox.forEach((item) =>
+        item.setAttribute("contenteditable", "true")
+      );
+      editflag = true;
+    } else {
+      targetTxtbox.forEach((item) =>
+        item.setAttribute("contenteditable", "false")
+      );
+      editflag = false;
     }
   };
 
@@ -45,6 +65,10 @@ function resetGUI() {
 
   category.forEach((item) => {
     item.addEventListener("click", handleCategoryClick);
+  });
+
+  categoryEditBtn.forEach((item) => {
+    item.addEventListener("click", handleCategoryEditBtnClick);
   });
 }
 
@@ -84,7 +108,7 @@ const createNewItem = (targetCategory) => {
   newItem.innerHTML = `
           <div class="item-row1">
             <div class="item-title">
-            <span class="txtbox item-title-txtbox" contenteditable
+            <span spellcheck="false" class="txtbox item-title-txtbox" contenteditable
             >${titleValue}</span
           >
             </div>
@@ -98,7 +122,7 @@ const createNewItem = (targetCategory) => {
             </div>
           </div>
           <div class="item-row2">
-          <span class="txtbox item-content-txtbox" contenteditable
+          <span spellcheck="false" class="txtbox item-content-txtbox" contenteditable
           >${textValue}</span
         ></div>
   `;
@@ -115,7 +139,7 @@ const createNewCategory = (categoryValue) => {
   newCategory.innerHTML = `
   <div class="category">
       <div class="category-title">
-      <span class="txtbox category-title-txtbox" contenteditable=""
+      <span spellcheck="false" class="txtbox category-title-txtbox" contenteditable=""
       >${categoryValue}</span
     >
       </div>
