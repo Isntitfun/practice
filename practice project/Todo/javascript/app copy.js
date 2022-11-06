@@ -3,68 +3,6 @@ const alert = document.querySelector(".alert");
 const alertMessage = document.querySelector(".alert span");
 let editflag = false;
 
-const initialCategoryEdit = document.querySelector(".category .edit-btn");
-const initialItemEdit = document.querySelectorAll(".item .edit-btn");
-
-const handleItemEditBtnClick = (event) => {
-  event.stopPropagation();
-  const itemID = event.currentTarget.parentElement.getAttribute("id");
-  console.log(event.currentTarget);
-  const targetCategory = document.getElementById(`itemID${itemID}`);
-  const targetTxtbox = targetCategory.querySelectorAll(".txtbox");
-  console.log(targetTxtbox);
-
-  if (!editflag) {
-    targetTxtbox.forEach((item) =>
-      item.setAttribute("contenteditable", "true")
-    );
-    editflag = true;
-    event.currentTarget.classList.add("active-btn");
-  } else {
-    targetTxtbox.forEach((item) =>
-      item.setAttribute("contenteditable", "false")
-    );
-    editflag = false;
-    event.currentTarget.classList.remove("active-btn");
-  }
-};
-
-const handleCategoryEditBtnClick = (event) => {
-  event.stopPropagation();
-  const catID = event.currentTarget.parentElement.getAttribute("id");
-  const targetCategory = document.getElementById(`catID${catID}`);
-  const targetTxtbox = targetCategory.querySelector(".txtbox");
-  const editMode = () => {
-    const preventClick = (event) => {
-      event.stopPropagation();
-    };
-
-    if (editflag) {
-      targetTxtbox.addEventListener("click", preventClick, true);
-    } else if (!editflag) {
-      const newTargetTxtbox = targetTxtbox.cloneNode(true);
-      targetTxtbox.parentNode.replaceChild(newTargetTxtbox, targetTxtbox);
-    }
-  };
-
-  if (!editflag) {
-    targetTxtbox.setAttribute("contenteditable", "true");
-    editflag = true;
-    event.currentTarget.classList.add("active-btn");
-    editMode();
-  } else {
-    targetTxtbox.setAttribute("contenteditable", "false");
-    editflag = false;
-    event.currentTarget.classList.remove("active-btn");
-    editMode();
-  }
-};
-
-initialCategoryEdit.addEventListener("click", handleCategoryEditBtnClick);
-initialItemEdit.forEach((item) =>
-  item.addEventListener("click", handleItemEditBtnClick)
-);
-
 function resetGUI() {
   const categories = document.querySelectorAll(".category-container");
   const category = document.querySelectorAll(".category");
@@ -101,6 +39,60 @@ function resetGUI() {
     }
   };
 
+  const handleCategoryEditBtnClick = (event) => {
+    event.stopPropagation();
+    const catID = event.currentTarget.parentElement.getAttribute("id");
+    const targetCategory = document.getElementById(`catID${catID}`);
+    const targetTxtbox = targetCategory.querySelector(".txtbox");
+    const editMode = () => {
+      const preventClick = (event) => {
+        event.stopPropagation();
+      };
+
+      if (editflag) {
+        targetTxtbox.addEventListener("click", preventClick, true);
+      } else if (!editflag) {
+        const newTargetTxtbox = targetTxtbox.cloneNode(true);
+        targetTxtbox.parentNode.replaceChild(newTargetTxtbox, targetTxtbox);
+      }
+    };
+
+    if (!editflag) {
+      targetTxtbox.setAttribute("contenteditable", "true");
+      editflag = true;
+      event.currentTarget.classList.add("active-btn");
+      editMode();
+    } else {
+      targetTxtbox.setAttribute("contenteditable", "false");
+      editflag = false;
+      event.currentTarget.classList.remove("active-btn");
+      editMode();
+    }
+  };
+
+  const handleItemEditBtnClick = (event) => {
+    event.stopPropagation();
+    const itemID = event.currentTarget.parentElement.getAttribute("id");
+    console.log(event.currentTarget);
+    const targetCategory = document.getElementById(`itemID${itemID}`);
+    const targetTxtbox = targetCategory.querySelectorAll(".txtbox");
+    console.log(targetTxtbox);
+
+    if (!editflag) {
+      targetTxtbox.forEach((item) =>
+        item.setAttribute("contenteditable", "true")
+      );
+      editflag = true;
+      event.currentTarget.classList.add("active-btn");
+    } else {
+      targetTxtbox.forEach((item) =>
+        item.setAttribute("contenteditable", "false")
+      );
+      editflag = false;
+      event.currentTarget.classList.remove("active-btn");
+    }
+  };
+
   categories.forEach((item) => {
     item.addEventListener("click", handleCategoriesClick);
   });
@@ -109,13 +101,13 @@ function resetGUI() {
     item.addEventListener("click", handleCategoryClick);
   });
 
-  // categoryEditBtn.forEach((item) => {
-  //   item.addEventListener("click", handleCategoryEditBtnClick);
-  // });
+  categoryEditBtn.forEach((item) => {
+    item.addEventListener("click", handleCategoryEditBtnClick);
+  });
 
-  // itemEditBtn.forEach((item) => {
-  //   item.addEventListener("click", handleItemEditBtnClick);
-  // });
+  itemEditBtn.forEach((item) => {
+    item.addEventListener("click", handleItemEditBtnClick);
+  });
 
   const itemContainer = document.querySelectorAll(".item-container");
   const itemContainerArray = Array.from(itemContainer);
@@ -194,10 +186,6 @@ const createNewItem = (targetCategory) => {
           >${textValue}</span
         ></div>
   `;
-
-  const newEditBtn = newItem.querySelector(".edit-btn");
-  newEditBtn.addEventListener("click", handleItemEditBtnClick);
-
   const targetLocation = targetCategory.querySelector(".item-wrapper");
   targetLocation.appendChild(newItem);
 };
@@ -232,10 +220,6 @@ const createNewCategory = (categoryValue) => {
       <div class="item-wrapper">
       </div>
   </div>`;
-
-  const newEditBtn = newCategory.querySelector(".edit-btn");
-  newEditBtn.addEventListener("click", handleCategoryEditBtnClick);
-
   list.appendChild(newCategory);
 };
 
