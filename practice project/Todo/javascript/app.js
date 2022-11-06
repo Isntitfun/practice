@@ -75,6 +75,7 @@ function resetGUI() {
   const handleItemEditBtnClick = (event) => {
     event.stopPropagation();
     const itemID = event.currentTarget.parentElement.getAttribute("id");
+    console.log(itemID);
     const targetCategory = document.getElementById(`itemID${itemID}`);
     const targetTxtbox = targetCategory.querySelectorAll(".txtbox");
 
@@ -124,10 +125,7 @@ function resetGUI() {
 
   itemContainerArray.forEach((item) => {
     const index = itemContainerArray.indexOf(item);
-    console.log(index);
-    console.log(itemContainerHeight[index]);
-    console.log(itemContainer[index].style.height);
-    console.log(itemWrapperHeight[index]);
+
     if (itemContainerHeight[index] !== 0) {
       itemContainer[index].style.height = `${itemWrapperHeight[index]}px`;
     }
@@ -161,7 +159,7 @@ const createNewItem = (targetCategory) => {
   const textValue = itemText.value;
   const titleValue = itemTitle.value;
   const colorValue = itemColor.value;
-  const itemID = `itemID${new Date().getTime().toString()}`;
+  const itemID = `${new Date().getTime().toString()}`;
 
   const newItem = document.createElement("div");
   let itemid = document.createAttribute("item-id");
