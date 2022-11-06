@@ -109,6 +109,29 @@ function resetGUI() {
   itemEditBtn.forEach((item) => {
     item.addEventListener("click", handleItemEditBtnClick);
   });
+
+  const itemContainer = document.querySelectorAll(".item-container");
+  const itemContainerArray = Array.from(itemContainer);
+  const itemWrapper = Array.from(itemContainer).map(
+    (item) => item.firstElementChild
+  );
+  const itemContainerHeight = Array.from(itemContainer).map(
+    (item) => item.getBoundingClientRect().height
+  );
+  const itemWrapperHeight = itemWrapper.map(
+    (item) => item.getBoundingClientRect().height
+  );
+
+  itemContainerArray.forEach((item) => {
+    const index = itemContainerArray.indexOf(item);
+    console.log(index);
+    console.log(itemContainerHeight[index]);
+    console.log(itemContainer[index].style.height);
+    console.log(itemWrapperHeight[index]);
+    if (itemContainerHeight[index] !== 0) {
+      itemContainer[index].style.height = `${itemWrapperHeight[index]}px`;
+    }
+  });
 }
 
 // input submit

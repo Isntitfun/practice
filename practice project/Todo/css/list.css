@@ -114,11 +114,13 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  min-height: 19px;
 }
 
 .item-row2 {
   margin-top: 15px;
   padding: 7px;
+  min-height: 28px;
 }
 
 .item-row2 input {
