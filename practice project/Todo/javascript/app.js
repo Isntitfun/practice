@@ -1,70 +1,25 @@
-const list = document.querySelector(".list");
+// global
 const alert = document.querySelector(".alert");
 const alertMessage = document.querySelector(".alert span");
-let editflag = false;
 
+// display
+const list = document.querySelector(".list");
+
+// console
+const form = document.querySelector(".console-wrapper");
+const itemText = document.getElementById("text");
+const itemTitle = document.getElementById("title");
+const itemCategory = document.getElementById("category");
+const itemColor = document.getElementById("color");
+
+const initialCategory = document.querySelector(".category-container")
+const initialItem = document.querySelector(".item")
 const initialCategoryEdit = document.querySelector(".category .edit-btn");
 const initialItemEdit = document.querySelectorAll(".item .edit-btn");
+const initialCategoryClear = document.querySelector(".category .clear-btn")
 
-const handleItemEditBtnClick = (event) => {
-  event.stopPropagation();
-  const itemID = event.currentTarget.parentElement.getAttribute("id");
-  console.log(event.currentTarget);
-  const targetCategory = document.getElementById(`itemID${itemID}`);
-  const targetTxtbox = targetCategory.querySelectorAll(".txtbox");
-  console.log(targetTxtbox);
-
-  if (!editflag) {
-    targetTxtbox.forEach((item) =>
-      item.setAttribute("contenteditable", "true")
-    );
-    editflag = true;
-    event.currentTarget.classList.add("active-btn");
-  } else {
-    targetTxtbox.forEach((item) =>
-      item.setAttribute("contenteditable", "false")
-    );
-    editflag = false;
-    event.currentTarget.classList.remove("active-btn");
-  }
-};
-
-const handleCategoryEditBtnClick = (event) => {
-  event.stopPropagation();
-  const catID = event.currentTarget.parentElement.getAttribute("id");
-  const targetCategory = document.getElementById(`catID${catID}`);
-  const targetTxtbox = targetCategory.querySelector(".txtbox");
-  const editMode = () => {
-    const preventClick = (event) => {
-      event.stopPropagation();
-    };
-
-    if (editflag) {
-      targetTxtbox.addEventListener("click", preventClick, true);
-    } else if (!editflag) {
-      const newTargetTxtbox = targetTxtbox.cloneNode(true);
-      targetTxtbox.parentNode.replaceChild(newTargetTxtbox, targetTxtbox);
-    }
-  };
-
-  if (!editflag) {
-    targetTxtbox.setAttribute("contenteditable", "true");
-    editflag = true;
-    event.currentTarget.classList.add("active-btn");
-    editMode();
-  } else {
-    targetTxtbox.setAttribute("contenteditable", "false");
-    editflag = false;
-    event.currentTarget.classList.remove("active-btn");
-    editMode();
-  }
-};
-
-initialCategoryEdit.addEventListener("click", handleCategoryEditBtnClick);
-initialItemEdit.forEach((item) =>
-  item.addEventListener("click", handleItemEditBtnClick)
-);
-
+// functions
+// glabal
 function resetGUI() {
   const categories = document.querySelectorAll(".category-container");
   const category = document.querySelectorAll(".category");
@@ -109,13 +64,6 @@ function resetGUI() {
     item.addEventListener("click", handleCategoryClick);
   });
 
-  // categoryEditBtn.forEach((item) => {
-  //   item.addEventListener("click", handleCategoryEditBtnClick);
-  // });
-
-  // itemEditBtn.forEach((item) => {
-  //   item.addEventListener("click", handleItemEditBtnClick);
-  // });
 
   const itemContainer = document.querySelectorAll(".item-container");
   const itemContainerArray = Array.from(itemContainer);
@@ -138,19 +86,6 @@ function resetGUI() {
   });
 }
 
-// input submit
-const form = document.querySelector(".console-wrapper");
-const itemText = document.getElementById("text");
-const itemTitle = document.getElementById("title");
-const itemCategory = document.getElementById("category");
-const itemColor = document.getElementById("color");
-
-const resetForm = () => {
-  itemText.value = "";
-  itemTitle.value = "";
-  itemColor.value = "#ffffff";
-};
-
 const showAlert = (type, message) => {
   alert.classList.add(`alert-${type}`);
   alertMessage.innerText = message;
@@ -161,6 +96,85 @@ const showAlert = (type, message) => {
   setTimeout(hideAlert, 1300);
 };
 
+
+// button functionalities
+const handleItemEditBtnClick = (event) => {
+  event.stopPropagation();
+  const itemID = event.currentTarget.parentElement.getAttribute("id");
+  const targetItem = document.getElementById(`itemID${itemID}`);
+  const targetTxtbox = targetItem.querySelectorAll(".txtbox");
+  const isEditing = targetItem.getAttribute("editflag")
+
+  if (!isEditing) { 
+    targetTxtbox.forEach((item) =>
+      item.setAttribute("contenteditable", "true")
+    );
+    targetItem.setAttribute("editflag", "true");
+    event.currentTarget.classList.add("active-btn");
+  } else {
+    targetTxtbox.forEach((item) =>
+      item.setAttribute("contenteditable", "false")
+    );
+    targetItem.setAttribute("editflag", "");
+    event.currentTarget.classList.remove("active-btn");
+  }
+};
+
+const handleCategoryEditBtnClick = (event) => {
+  event.stopPropagation();
+  const catID = event.currentTarget.parentElement.getAttribute("id");
+  const targetCategory = document.getElementById(`catID${catID}`);
+  const targetTxtbox = targetCategory.querySelector(".txtbox");
+  const isEditing = targetCategory.getAttribute("editflag")
+  const editMode = () => {
+    const preventClick = (event) => {
+      event.stopPropagation();
+    };
+
+    if (targetCategory.getAttribute("editflag")) {
+      targetTxtbox.addEventListener("click", preventClick, true);
+    } else {
+      const newTargetTxtbox = targetTxtbox.cloneNode(true);
+      targetTxtbox.parentNode.replaceChild(newTargetTxtbox, targetTxtbox);
+    }
+  };
+
+  if (!isEditing) {
+    targetTxtbox.setAttribute("contenteditable", "true");
+    targetCategory.setAttribute("editflag", "true");
+    event.currentTarget.classList.add("active-btn");
+    editMode();
+  } else {
+    targetTxtbox.setAttribute("contenteditable", "false");
+    targetCategory.setAttribute("editflag", "" );
+    event.currentTarget.classList.remove("active-btn");
+    editMode();
+  }
+};
+
+const handleCategoryClearBtnClick = (event) => {
+  event.stopPropagation()
+  const catID = event.currentTarget.parentElement.getAttribute("id");
+  const targetCategory = document.getElementById(`catID${catID}`);
+  const targetCategoryName = targetCategory.querySelector(".category-title span")
+  const targetContainer = targetCategory.querySelector(".item-wrapper")
+  const targetItems = targetContainer.querySelectorAll(".item")
+  console.log(targetItems);
+
+  if(targetItems.length >= 1) {
+  targetItems.forEach((item) => targetContainer.removeChild(item))
+  showAlert("normal", `${targetCategoryName.innerText} is cleared`)
+} else {
+  showAlert("attention", `${targetCategoryName.innerText} is already empty`)
+}
+
+targetContainer.parentElement.style.overflow = "hidden"
+resetGUI()
+}
+
+
+
+// form functionalities
 const createNewItem = (targetCategory) => {
   const textValue = itemText.value;
   const titleValue = itemTitle.value;
@@ -168,8 +182,9 @@ const createNewItem = (targetCategory) => {
   const itemID = `${new Date().getTime().toString()}`;
 
   const newItem = document.createElement("div");
-  let itemid = document.createAttribute("item-id");
-  newItem.setAttributeNode(itemid);
+  let editflag = document.createAttribute("editflag");
+  editflag.value = ""
+  newItem.setAttributeNode(editflag);
   newItem.classList.add("item");
   newItem.style.backgroundColor = `${colorValue}`;
   newItem.setAttribute("id", `itemID${itemID}`);
@@ -205,8 +220,9 @@ const createNewItem = (targetCategory) => {
 const createNewCategory = (categoryValue) => {
   const categoryID = `${new Date().getTime().toString()}`;
   const newCategory = document.createElement("div");
-  let catid = document.createAttribute("cat-id");
-  newCategory.setAttributeNode(catid);
+  let editflag = document.createAttribute("editflag");
+  editflag.value = ""
+  newCategory.setAttributeNode(editflag);
   newCategory.classList.add("category-container");
   newCategory.setAttribute("id", `catID${categoryID}`);
   newCategory.innerHTML = `
@@ -220,7 +236,7 @@ const createNewCategory = (categoryValue) => {
           <button class="btn edit-btn">
               <i class="fa-regular fa-pen-to-square"></i>
           </button>
-          <button class="btn delete-btn">
+          <button class="btn clear-btn">
               <i class="fa-regular fa-square-minus"></i>
           </button>
           <button class="btn delete-btn">
@@ -235,7 +251,8 @@ const createNewCategory = (categoryValue) => {
 
   const newEditBtn = newCategory.querySelector(".edit-btn");
   newEditBtn.addEventListener("click", handleCategoryEditBtnClick);
-
+  const newClearBtn = newCategory.querySelector(".clear-btn")
+  newClearBtn.addEventListener("click",handleCategoryClearBtnClick)
   list.appendChild(newCategory);
 };
 
@@ -282,6 +299,24 @@ const handleFormSubmit = (e) => {
   resetGUI();
   resetForm();
 };
+
+const resetForm = () => {
+  itemText.value = "";
+  itemTitle.value = "";
+  itemCategory.value = "";
+  itemColor.value = "#ffffff";
+};
+
+
+
+
+initialCategory.setAttribute("editflag", "")
+initialItem.setAttribute("editflag","")
+initialCategoryEdit.addEventListener("click", handleCategoryEditBtnClick);
+initialItemEdit.forEach((item) =>
+  item.addEventListener("click", handleItemEditBtnClick)
+);
+initialCategoryClear.addEventListener("click", handleCategoryClearBtnClick)
 
 form.addEventListener("submit", handleFormSubmit);
 
