@@ -162,14 +162,15 @@ const handleCategoryClearBtnClick = (event) => {
   console.log(targetItems);
 
   if(targetItems.length >= 1) {
-  targetItems.forEach((item) => targetContainer.removeChild(item))
+    targetItems.forEach((item) => item.style.opacity = "0")
+  setTimeout(targetItems.forEach((item) => targetContainer.removeChild(item)),400)
   showAlert("normal", `${targetCategoryName.innerText} is cleared`)
 } else {
   showAlert("attention", `${targetCategoryName.innerText} is already empty`)
 }
 
-targetContainer.parentElement.style.overflow = "hidden"
-resetGUI()
+setTimeout(targetContainer.parentElement.style.overflow = "hidden",400)
+setTimeout(resetGUI(),400)
 }
 
 

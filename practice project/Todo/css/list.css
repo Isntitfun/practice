@@ -108,6 +108,7 @@
   background-color: var(--item-color);
   color: black;
   border-radius: 7px;
+  transition: 0.3s ease-in;
 }
 
 .item-row1 {
