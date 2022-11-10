@@ -311,7 +311,9 @@ const handleFormSubmit = (e) => {
   );
   const existingCategoriesID = categoryRawData.map((item) => item.id);
 
-  if (list.children.length < 1) {
+  if (textValue === "") {
+    showAlert("attention", `Content is absent`);
+  } else if (list.children.length < 1) {
     createNewCategory(categoryValue);
     const categoryRawData = [
       ...document.querySelectorAll(".category-container"),
@@ -325,8 +327,6 @@ const handleFormSubmit = (e) => {
     );
     createNewItem(targetCategory);
     showAlert("normal", `New category Added - ${categoryValue}`);
-  } else if (textValue === "") {
-    showAlert("attention", `Content is absent`);
   } else if (categoryValue === "") {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
     createNewItem(targetCategory);
