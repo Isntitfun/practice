@@ -12,11 +12,13 @@ const itemTitle = document.getElementById("title");
 const itemCategory = document.getElementById("category");
 const itemColor = document.getElementById("color");
 
-const initialCategory = document.querySelector(".category-container")
-const initialItem = document.querySelector(".item")
+const initialCategory = document.querySelector(".category-container");
+const initialItem = document.querySelector(".item");
 const initialCategoryEdit = document.querySelector(".category .edit-btn");
 const initialItemEdit = document.querySelectorAll(".item .edit-btn");
-const initialCategoryClear = document.querySelector(".category .clear-btn")
+const initialCategoryClear = document.querySelector(".category .clear-btn");
+const initialItemDelete = document.querySelector(".item .delete-btn");
+const initialCategoryDelete = document.querySelector(".category .delete-btn");
 
 // functions
 // glabal
@@ -64,7 +66,6 @@ function resetGUI() {
     item.addEventListener("click", handleCategoryClick);
   });
 
-
   const itemContainer = document.querySelectorAll(".item-container");
   const itemContainerArray = Array.from(itemContainer);
   const itemWrapper = Array.from(itemContainer).map(
@@ -96,16 +97,15 @@ const showAlert = (type, message) => {
   setTimeout(hideAlert, 1300);
 };
 
-
 // button functionalities
 const handleItemEditBtnClick = (event) => {
   event.stopPropagation();
   const itemID = event.currentTarget.parentElement.getAttribute("id");
   const targetItem = document.getElementById(`itemID${itemID}`);
   const targetTxtbox = targetItem.querySelectorAll(".txtbox");
-  const isEditing = targetItem.getAttribute("editflag")
+  const isEditing = targetItem.getAttribute("editflag");
 
-  if (!isEditing) { 
+  if (!isEditing) {
     targetTxtbox.forEach((item) =>
       item.setAttribute("contenteditable", "true")
     );
@@ -125,7 +125,7 @@ const handleCategoryEditBtnClick = (event) => {
   const catID = event.currentTarget.parentElement.getAttribute("id");
   const targetCategory = document.getElementById(`catID${catID}`);
   const targetTxtbox = targetCategory.querySelector(".txtbox");
-  const isEditing = targetCategory.getAttribute("editflag")
+  const isEditing = targetCategory.getAttribute("editflag");
   const editMode = () => {
     const preventClick = (event) => {
       event.stopPropagation();
@@ -146,35 +146,73 @@ const handleCategoryEditBtnClick = (event) => {
     editMode();
   } else {
     targetTxtbox.setAttribute("contenteditable", "false");
-    targetCategory.setAttribute("editflag", "" );
+    targetCategory.setAttribute("editflag", "");
     event.currentTarget.classList.remove("active-btn");
     editMode();
   }
 };
 
 const handleCategoryClearBtnClick = (event) => {
-  event.stopPropagation()
+  event.stopPropagation();
   const catID = event.currentTarget.parentElement.getAttribute("id");
   const targetCategory = document.getElementById(`catID${catID}`);
-  const targetCategoryName = targetCategory.querySelector(".category-title span")
-  const targetContainer = targetCategory.querySelector(".item-wrapper")
-  const targetItems = targetContainer.querySelectorAll(".item")
-  console.log(targetItems);
+  const targetCategoryName = targetCategory.querySelector(
+    ".category-title span"
+  );
+  const targetContainer = targetCategory.querySelector(".item-wrapper");
+  const targetItems = targetContainer.querySelectorAll(".item");
+  const clearItem = () => {
+    targetItems.forEach((item) => targetContainer.removeChild(item));
+    targetContainer.parentElement.style.overflow = "hidden";
+    resetGUI();
+  };
+  const delayedClearItem = setTimeout(clearItem, 350);
 
-  if(targetItems.length >= 1) {
-    targetItems.forEach((item) => item.style.opacity = "0")
-  setTimeout(targetItems.forEach((item) => targetContainer.removeChild(item)),400)
-  showAlert("normal", `${targetCategoryName.innerText} is cleared`)
-} else {
-  showAlert("attention", `${targetCategoryName.innerText} is already empty`)
-}
+  if (targetItems.length >= 1) {
+    targetItems.forEach((item) => (item.style.opacity = "0"));
+    delayedClearItem;
+    showAlert("normal", `${targetCategoryName.innerText} is cleared`);
+  } else {
+    showAlert("attention", `${targetCategoryName.innerText} is already empty`);
+  }
+};
 
-setTimeout(targetContainer.parentElement.style.overflow = "hidden",400)
-setTimeout(resetGUI(),400)
-}
+const handleItemDeleteBtnClick = (event) => {
+  event.stopPropagation();
+  const itemID = event.currentTarget.parentElement.getAttribute("id");
+  const targetItem = document.getElementById(`itemID${itemID}`);
+  const targetContainer = targetItem.parentElement;
 
+  const deleteItem = () => {
+    targetContainer.removeChild(targetItem);
+    targetContainer.parentElement.style.overflow = "hidden";
+    resetGUI();
+  };
 
+  const delayedDeleteItem = setTimeout(deleteItem, 350);
 
+  targetItem.style.opacity = "0";
+  showAlert("normal", "Item deleted");
+  delayedDeleteItem;
+};
+
+const handleCategoryDeleteBtnClick = (event) => {
+  event.stopPropagation();
+  const catID = event.currentTarget.parentElement.getAttribute("id");
+  const targetCategory = document.getElementById(`catID${catID}`);
+  const targetContainer = targetCategory.parentElement;
+
+  const deleteCategory = () => {
+    targetContainer.removeChild(targetCategory);
+    resetGUI();
+  };
+
+  const delayedDeleteCategory = setTimeout(deleteCategory, 350);
+
+  targetCategory.style.opacity = "0";
+  delayedDeleteCategory;
+  showAlert("normal", "Category deleted");
+};
 // form functionalities
 const createNewItem = (targetCategory) => {
   const textValue = itemText.value;
@@ -184,7 +222,7 @@ const createNewItem = (targetCategory) => {
 
   const newItem = document.createElement("div");
   let editflag = document.createAttribute("editflag");
-  editflag.value = ""
+  editflag.value = "";
   newItem.setAttributeNode(editflag);
   newItem.classList.add("item");
   newItem.style.backgroundColor = `${colorValue}`;
@@ -213,6 +251,8 @@ const createNewItem = (targetCategory) => {
 
   const newEditBtn = newItem.querySelector(".edit-btn");
   newEditBtn.addEventListener("click", handleItemEditBtnClick);
+  const newDeleteBtn = newItem.querySelector(".delete-btn");
+  newDeleteBtn.addEventListener("click", handleItemDeleteBtnClick);
 
   const targetLocation = targetCategory.querySelector(".item-wrapper");
   targetLocation.appendChild(newItem);
@@ -222,7 +262,7 @@ const createNewCategory = (categoryValue) => {
   const categoryID = `${new Date().getTime().toString()}`;
   const newCategory = document.createElement("div");
   let editflag = document.createAttribute("editflag");
-  editflag.value = ""
+  editflag.value = "";
   newCategory.setAttributeNode(editflag);
   newCategory.classList.add("category-container");
   newCategory.setAttribute("id", `catID${categoryID}`);
@@ -252,8 +292,10 @@ const createNewCategory = (categoryValue) => {
 
   const newEditBtn = newCategory.querySelector(".edit-btn");
   newEditBtn.addEventListener("click", handleCategoryEditBtnClick);
-  const newClearBtn = newCategory.querySelector(".clear-btn")
-  newClearBtn.addEventListener("click",handleCategoryClearBtnClick)
+  const newClearBtn = newCategory.querySelector(".clear-btn");
+  newClearBtn.addEventListener("click", handleCategoryClearBtnClick);
+  const newDeleteBtn = newCategory.querySelector(".delete-btn");
+  newDeleteBtn.addEventListener("click", handleCategoryDeleteBtnClick);
   list.appendChild(newCategory);
 };
 
@@ -269,7 +311,21 @@ const handleFormSubmit = (e) => {
   );
   const existingCategoriesID = categoryRawData.map((item) => item.id);
 
-  if (textValue === "") {
+  if (list.children.length < 1) {
+    createNewCategory(categoryValue);
+    const categoryRawData = [
+      ...document.querySelectorAll(".category-container"),
+    ];
+    const existingCategories = categoryRawData.map(
+      (item) => item.querySelector(".category-title").innerText
+    );
+    const existingCategoriesID = categoryRawData.map((item) => item.id);
+    const targetCategory = document.getElementById(
+      `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
+    );
+    createNewItem(targetCategory);
+    showAlert("normal", `New category Added - ${categoryValue}`);
+  } else if (textValue === "") {
     showAlert("attention", `Content is absent`);
   } else if (categoryValue === "") {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
@@ -308,16 +364,15 @@ const resetForm = () => {
   itemColor.value = "#ffffff";
 };
 
-
-
-
-initialCategory.setAttribute("editflag", "")
-initialItem.setAttribute("editflag","")
+initialCategory.setAttribute("editflag", "");
+initialItem.setAttribute("editflag", "");
 initialCategoryEdit.addEventListener("click", handleCategoryEditBtnClick);
 initialItemEdit.forEach((item) =>
   item.addEventListener("click", handleItemEditBtnClick)
 );
-initialCategoryClear.addEventListener("click", handleCategoryClearBtnClick)
+initialCategoryClear.addEventListener("click", handleCategoryClearBtnClick);
+initialItemDelete.addEventListener("click", handleItemDeleteBtnClick);
+initialCategoryDelete.addEventListener("click", handleCategoryDeleteBtnClick);
 
 form.addEventListener("submit", handleFormSubmit);
 
