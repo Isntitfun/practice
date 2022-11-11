@@ -117,6 +117,11 @@ const handleItemEditBtnClick = (event) => {
     );
     targetItem.setAttribute("editflag", "");
     event.currentTarget.classList.remove("active-btn");
+    editItemStorage(
+      targetTxtbox[1].innerText,
+      targetTxtbox[0].innerText,
+      `itemID${itemID}`
+    );
   }
 };
 
@@ -149,6 +154,7 @@ const handleCategoryEditBtnClick = (event) => {
     targetCategory.setAttribute("editflag", "");
     event.currentTarget.classList.remove("active-btn");
     editMode();
+    editCategoryStorage(targetTxtbox.innerText, `catID${catID}`);
   }
 };
 
@@ -214,12 +220,13 @@ const handleCategoryDeleteBtnClick = (event) => {
   showAlert("normal", "Category deleted");
 };
 // form functionalities
-const createNewItem = (targetCategory) => {
-  const textValue = itemText.value;
-  const titleValue = itemTitle.value;
-  const colorValue = itemColor.value;
-  const itemID = `${new Date().getTime().toString()}`;
-
+const createNewItem = (
+  targetCategory,
+  textValue,
+  titleValue,
+  colorValue,
+  itemID
+) => {
   const newItem = document.createElement("div");
   let editflag = document.createAttribute("editflag");
   editflag.value = "";
@@ -256,10 +263,11 @@ const createNewItem = (targetCategory) => {
 
   const targetLocation = targetCategory.querySelector(".item-wrapper");
   targetLocation.appendChild(newItem);
+  const targetID = targetCategory.id;
+  saveItem(targetID, textValue, titleValue, colorValue, itemID);
 };
 
-const createNewCategory = (categoryValue) => {
-  const categoryID = `${new Date().getTime().toString()}`;
+const createNewCategory = (categoryValue, categoryID) => {
   const newCategory = document.createElement("div");
   let editflag = document.createAttribute("editflag");
   editflag.value = "";
@@ -297,13 +305,19 @@ const createNewCategory = (categoryValue) => {
   const newDeleteBtn = newCategory.querySelector(".delete-btn");
   newDeleteBtn.addEventListener("click", handleCategoryDeleteBtnClick);
   list.appendChild(newCategory);
+  saveCategory(categoryValue, categoryID);
 };
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
 
   const textValue = itemText.value;
+  const titleValue = itemTitle.value;
+  const colorValue = itemColor.value;
+  const itemID = `${new Date().getTime().toString()}`;
+
   const categoryValue = itemCategory.value;
+  const categoryID = `${new Date().getTime().toString()}`;
 
   const categoryRawData = [...document.querySelectorAll(".category-container")];
   const existingCategories = categoryRawData.map(
@@ -314,7 +328,7 @@ const handleFormSubmit = (e) => {
   if (textValue === "") {
     showAlert("attention", `Content is absent`);
   } else if (list.children.length < 1) {
-    createNewCategory(categoryValue);
+    createNewCategory(categoryValue, categoryID);
     const categoryRawData = [
       ...document.querySelectorAll(".category-container"),
     ];
@@ -325,20 +339,20 @@ const handleFormSubmit = (e) => {
     const targetCategory = document.getElementById(
       `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
     );
-    createNewItem(targetCategory);
+    createNewItem(targetCategory, textValue, titleValue, colorValue, itemID);
     showAlert("normal", `New category Added - ${categoryValue}`);
   } else if (categoryValue === "") {
     const targetCategory = document.getElementById(`catID${categoryValue}`);
-    createNewItem(targetCategory);
+    createNewItem(targetCategory, textValue, titleValue, colorValue, itemID);
     showAlert("normal", `Item Added in General`);
   } else if (existingCategories.includes(categoryValue)) {
     const targetCategory = document.getElementById(
       `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
     );
-    createNewItem(targetCategory);
+    createNewItem(targetCategory, textValue, titleValue, colorValue, itemID);
     showAlert("normal", `Item Added in ${categoryValue}`);
   } else {
-    createNewCategory(categoryValue);
+    createNewCategory(categoryValue, categoryID);
     const categoryRawData = [
       ...document.querySelectorAll(".category-container"),
     ];
@@ -349,7 +363,7 @@ const handleFormSubmit = (e) => {
     const targetCategory = document.getElementById(
       `${existingCategoriesID[existingCategories.indexOf(categoryValue)]}`
     );
-    createNewItem(targetCategory);
+    createNewItem(targetCategory, textValue, titleValue, colorValue, itemID);
     showAlert("normal", `New category Added - ${categoryValue}`);
   }
 
@@ -363,6 +377,56 @@ const resetForm = () => {
   itemCategory.value = "";
   itemColor.value = "#ffffff";
 };
+
+// localstorage
+
+const getFromStorage = (type) => {
+  return localStorage.getItem(`${type}`)
+    ? JSON.parse(localStorage.getItem(`${type}`))
+    : [];
+};
+
+const saveCategory = (category, id) => {
+  let toBeSaved = getFromStorage("Category");
+  const newObj = { category, id: `catID${id}` };
+
+  toBeSaved.push(newObj);
+  localStorage.setItem("Category", JSON.stringify(toBeSaved));
+};
+
+const saveItem = (catID, text, title, color, id) => {
+  const toBeSaved = getFromStorage("Item");
+  const newObj = { catID, text, title, color, id: `itemID${id}` };
+  toBeSaved.push(newObj);
+
+  localStorage.setItem("Item", JSON.stringify(toBeSaved));
+};
+
+const editCategoryStorage = (category, id) => {
+  let categoryList = getFromStorage("Category");
+  categoryList = categoryList.map((item) => {
+    if (item.id === id) {
+      item.category = category;
+    }
+    return item;
+  });
+
+  localStorage.setItem("Category", JSON.stringify(categoryList));
+};
+
+const editItemStorage = (text, title, id) => {
+  let itemList = getFromStorage("Item");
+  itemList = itemList.map((item) => {
+    if (item.id === id) {
+      item.text = text;
+      item.title = title;
+    }
+    return item;
+  });
+  localStorage.setItem("Item", JSON.stringify(itemList));
+};
+
+const deleteCategoryStorage = () => {};
 
 initialCategory.setAttribute("editflag", "");
 initialItem.setAttribute("editflag", "");
