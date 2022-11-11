@@ -178,6 +178,7 @@ const handleCategoryClearBtnClick = (event) => {
     targetItems.forEach((item) => (item.style.opacity = "0"));
     delayedClearItem;
     showAlert("normal", `${targetCategoryName.innerText} is cleared`);
+    clearCategoryStorage(`catID${catID}`);
   } else {
     showAlert("attention", `${targetCategoryName.innerText} is already empty`);
   }
@@ -200,6 +201,7 @@ const handleItemDeleteBtnClick = (event) => {
   targetItem.style.opacity = "0";
   showAlert("normal", "Item deleted");
   delayedDeleteItem;
+  deleteItemStorage(`itemID${itemID}`);
 };
 
 const handleCategoryDeleteBtnClick = (event) => {
@@ -218,6 +220,7 @@ const handleCategoryDeleteBtnClick = (event) => {
   targetCategory.style.opacity = "0";
   delayedDeleteCategory;
   showAlert("normal", "Category deleted");
+  deleteCategoryStorage(`catID${catID}`);
 };
 // form functionalities
 const createNewItem = (
@@ -426,7 +429,142 @@ const editItemStorage = (text, title, id) => {
   localStorage.setItem("Item", JSON.stringify(itemList));
 };
 
-const deleteCategoryStorage = () => {};
+const deleteCategoryStorage = (id) => {
+  let categoryList = getFromStorage("Category");
+  categoryList = categoryList.filter((item) => {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem("Category", JSON.stringify(categoryList));
+
+  let itemList = getFromStorage("Item");
+  itemList = itemList.filter((item) => {
+    if (item.catID !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem("Item", JSON.stringify(itemList));
+};
+
+const deleteItemStorage = (id) => {
+  let itemList = getFromStorage("Item");
+  itemList = itemList.filter((item) => {
+    if (item.id !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem("Item", JSON.stringify(itemList));
+};
+
+const clearCategoryStorage = (id) => {
+  let itemList = getFromStorage("Item");
+  itemList = itemList.filter((item) => {
+    if (item.catID !== id) {
+      return item;
+    }
+  });
+  localStorage.setItem("Item", JSON.stringify(itemList));
+};
+
+const loadCategory = () => {
+  let categoryList = getFromStorage("Category");
+  categoryList.forEach((item) => {
+    const categoryValue = item.category;
+    const categoryID = item.id.slice(5);
+    const newCategory = document.createElement("div");
+    let editflag = document.createAttribute("editflag");
+    editflag.value = "";
+    newCategory.setAttributeNode(editflag);
+    newCategory.classList.add("category-container");
+    newCategory.setAttribute("id", `catID${categoryID}`);
+    newCategory.innerHTML = `
+    <div class="category">
+        <div class="category-title">
+        <span spellcheck="false" class="txtbox category-title-txtbox"
+        >${categoryValue}</span
+      >
+        </div>
+        <div class="btn-box" id="${categoryID}">
+            <button class="btn edit-btn">
+                <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="btn clear-btn">
+                <i class="fa-regular fa-square-minus"></i>
+            </button>
+            <button class="btn delete-btn">
+                 <i class="btn fa-solid fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="item-wrapper">
+        </div>
+    </div>`;
+
+    const newEditBtn = newCategory.querySelector(".edit-btn");
+    newEditBtn.addEventListener("click", handleCategoryEditBtnClick);
+    const newClearBtn = newCategory.querySelector(".clear-btn");
+    newClearBtn.addEventListener("click", handleCategoryClearBtnClick);
+    const newDeleteBtn = newCategory.querySelector(".delete-btn");
+    newDeleteBtn.addEventListener("click", handleCategoryDeleteBtnClick);
+    list.appendChild(newCategory);
+  });
+};
+
+const loadItem = () => {
+  let itemList = getFromStorage("Item");
+  itemList.forEach((item) => {
+    const targetCategory = document.getElementById(`${item.catID}`);
+    const textValue = item.text;
+    const titleValue = item.title;
+    const colorValue = item.color;
+    const itemID = item.id.slice(6);
+    const newItem = document.createElement("div");
+    console.log(targetCategory);
+    let editflag = document.createAttribute("editflag");
+    editflag.value = "";
+    newItem.setAttributeNode(editflag);
+    newItem.classList.add("item");
+    newItem.style.backgroundColor = `${colorValue}`;
+    newItem.setAttribute("id", `itemID${itemID}`);
+    newItem.innerHTML = `
+            <div class="item-row1">
+              <div class="item-title">
+              <span spellcheck="false" class="txtbox item-title-txtbox"
+              >${titleValue}</span
+            >
+              </div>
+              <div class="btn-box" id="${itemID}">
+                <button class="btn edit-btn">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="btn delete-btn">
+                  <i class="fa-regular fa-square-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="item-row2">
+            <span spellcheck="false" class="txtbox item-content-txtbox"
+            >${textValue}</span
+          ></div>
+    `;
+
+    const newEditBtn = newItem.querySelector(".edit-btn");
+    newEditBtn.addEventListener("click", handleItemEditBtnClick);
+    const newDeleteBtn = newItem.querySelector(".delete-btn");
+    newDeleteBtn.addEventListener("click", handleItemDeleteBtnClick);
+
+    const targetLocation = targetCategory.querySelector(".item-wrapper");
+    targetLocation.appendChild(newItem);
+  });
+};
+
+const DOMContentLoadedFunction = () => {
+  loadCategory();
+  loadItem();
+  resetGUI();
+};
 
 initialCategory.setAttribute("editflag", "");
 initialItem.setAttribute("editflag", "");
@@ -439,5 +577,5 @@ initialItemDelete.addEventListener("click", handleItemDeleteBtnClick);
 initialCategoryDelete.addEventListener("click", handleCategoryDeleteBtnClick);
 
 form.addEventListener("submit", handleFormSubmit);
-
+window.addEventListener("DOMContentLoaded", DOMContentLoadedFunction);
 resetGUI();
